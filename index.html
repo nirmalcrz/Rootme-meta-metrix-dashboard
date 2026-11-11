@@ -354,11 +354,12 @@ function addDays(d,k){const t=new Date(d+'T00:00:00Z');t.setUTCDate(t.getUTCDate
 const dm=d=>+d.slice(8)+' '+MON[+d.slice(5,7)-1];
 const dd=i=>mk().key+'-'+String(i).padStart(2,'0');
 function pkey(d){if(LS.gran==='day')return d;if(LS.gran==='month')return d.slice(0,7);const m=monday(d),f=dd(1);return m<f?f:m}
-function wkEnd(k){const e=addDays(monday(k),6),l=dd(mk().last);return e>l?l:e}
+function llast(){const m=mk();return LEADS.asOf&&LEADS.asOf.slice(0,7)===m.key?Math.min(m.last,+LEADS.asOf.slice(8)):m.last}
+function wkEnd(k){const e=addDays(monday(k),6),l=dd(llast());return e>l?l:e}
 function plabel(k,long){if(LS.gran==='day')return long?dm(k)+' '+k.slice(0,4):String(+k.slice(8));if(LS.gran==='week'){const e=wkEnd(k);return k===e?dm(k):(+k.slice(8))+'–'+dm(e)}return MON[+k.slice(5)-1]+(long?' '+k.slice(0,4):'')}
 function inScope(d){return LS.gran==='month'?true:d.slice(0,7)===mk().key}
 function scopeLabel(){return LS.gran==='month'?'all months in the sheets':mk().label+' '+mk().year}
-function periods(){if(LS.gran==='day')return Array.from({length:mk().last},(_,i)=>dd(i+1));if(LS.gran==='week')return [...new Set(Array.from({length:mk().last},(_,i)=>pkey(dd(i+1))))];return [...new Set(D.cube.map(r=>r[0].slice(0,7)))].sort()}
+function periods(){if(LS.gran==='day')return Array.from({length:llast()},(_,i)=>dd(i+1));if(LS.gran==='week')return [...new Set(Array.from({length:llast()},(_,i)=>pkey(dd(i+1))))];return [...new Set(D.cube.map(r=>r[0].slice(0,7)))].sort()}
 function rowsFor(o){o=o||{};return D.cube.filter(r=>inScope(r[0])&&(o.noSel||!LS.sel||pkey(r[0])===LS.sel)&&(LS.cat==='ALL'||r[1]===LS.cat)&&(o.noTeam||!LS.team||r[3]===LS.team))}
 function sumBy(rows,i){const m={};rows.forEach(r=>m[r[i]]=(m[r[i]]||0)+r[4]);return m}
 function grp(rows,i){const m={};rows.forEach(r=>{const o=m[r[i]]||(m[r[i]]={t:0,imp:0,won:0,oth:0,bad:0});o.t+=r[4];o[SG[r[2]]]+=r[4]});return m}
