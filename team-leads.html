@@ -255,14 +255,14 @@ html,body{height:auto}
     </div>
     <div class="card"><h2 id="o-t"></h2><p class="sub">Leads in Metrix whose source is organic (Instagram bio, inbox, story and comment, YouTube bio, website, referral, call, walk-in). Tap a bar to look at that period only.</p><div id="o-trend"></div></div>
     <div class="g2">
-      <div class="card"><h2>Organic leads by source</h2><p class="sub" id="o-ss"></p><div class="hb" id="o-src"></div></div>
-      <div class="card"><h2>Organic leads by course</h2><p class="sub" id="o-cs"></p><div class="hb" id="o-cat"></div></div>
+      <div class="card"><h2>Organic Rootme Skills by source</h2><p class="sub" id="o-ss"></p><div class="hb" id="o-src"></div></div>
+      <div class="card"><h2>Organic Rootme Skills by course</h2><p class="sub" id="o-cs"></p><div class="hb" id="o-cat"></div></div>
     </div>
-    <div class="card"><h2>Organic leads table</h2><p class="sub">Count per period and source</p><div class="scroll tall"><table id="o-table" class="mx"></table></div></div>
+    <div class="card"><h2>Organic Rootme Skills table</h2><p class="sub">Count per period and source</p><div class="scroll tall"><table id="o-table" class="mx"></table></div></div>
     <div class="note"><b>How these are counted</b><ul>
       <li>Meta ad leads are from the Rootme Skills ad account only. For each campaign, form leads and chat conversations are compared and the higher one is counted.</li>
       <li>Metrix leads are every lead created in Metrix on that day, from any source. Rootme Skills means Video Editing, Contech Marketing, AI Web Development and Graphic Design, including their workshops. Other leads are English, other courses and leads with an empty Campaign field.</li>
-      <li>Organic leads are Metrix leads from these sources: IG Bio RTM, IG Inbox RTM, IG Bio Faris Root, IG Inbox Faris Root, IG Story Faris Root, YT Bio Faris Root, YT Bio RTM, IG Comment Rootmedia, Website RTM, Referral, Call and Walk-In. They are already included in the Metrix counts above.</li>
+      <li>Organic Rootme Skills leads are Metrix leads from these sources: IG Bio RTM, IG Inbox RTM, IG Bio Faris Root, IG Inbox Faris Root, IG Story Faris Root, YT Bio Faris Root, YT Bio RTM, IG Comment Rootmedia, Website RTM, Referral, Call and Walk-In. They are already included in the Metrix counts above.</li>
       <li>The Meta and Metrix counts will not match exactly: one ad chat is not always entered in Metrix, and Metrix also holds leads that did not come from ads.</li>
       <li>Weeks here are fixed blocks of the month: 1–7, 8–14, 15–21, 22–28 and 29 to month end.</li>
     </ul></div>
@@ -362,8 +362,8 @@ function draw(){
   table($('x-table'),xr,xg,leadLast);
   const or=orgRows(),os={},oc=byCat(or);or.filter(r=>inSel(r.d)).forEach(r=>os[r.src]=(os[r.src]||0)+r.v);
   const srcs=SRC.filter(s=>or.some(r=>r.src===s)).sort((a,b)=>(os[b]||0)-(os[a]||0)),scol=Object.fromEntries(srcs.map((s,i)=>[s,i<5?SCOL[i]:'var(--c-ot)']));
-  $('tiles').insertAdjacentHTML('beforeend',tile('Organic leads (in Metrix)',n(oc.t),esc(sub),'var(--c-ct)',IC.crm));
-  $('o-t').textContent='Organic leads '+word[xg];
+  $('tiles').insertAdjacentHTML('beforeend',tile('Organic Rootme Skills',n(oc.t),esc(sub),'var(--c-ct)',IC.crm));
+  $('o-t').textContent='Organic Rootme Skills leads '+word[xg];
   trend($('o-trend'),or,xg,leadLast,'var(--c-ct)');
   $('o-ss').textContent=sub;hbars($('o-src'),srcs.filter(s=>os[s]).map(s=>({label:s,color:scol[s],value:os[s],sub:pct(os[s],oc.t)})));
   $('o-cs').textContent=sub;hbars($('o-cat'),CATS.filter(c=>oc.m[c[0]]).map(c=>({label:c[1],color:c[2],value:oc.m[c[0]],sub:pct(oc.m[c[0]],oc.t)})));
