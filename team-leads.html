@@ -218,14 +218,16 @@ td.heat{border-radius:8px;font-weight:600}
 html,body{height:auto}
 .wrap{max-width:1160px;margin:0 auto;padding:28px 20px 60px}
 .brandline{display:flex;align-items:center;gap:8px;font-weight:800;font-size:14px;color:var(--muted);margin-bottom:6px}
-.tiles.three{grid-template-columns:repeat(3,minmax(0,1fr))}
-.tiles.three .val{font-size:28px}
+.tiles.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.tiles.four .val{font-size:26px}
 .cardhead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
 .cardhead .seg{margin-bottom:12px}
 .hb .gh b{margin-left:auto}
 .scroll.tall{max-height:330px;overflow:auto}
 .scroll.tall th{position:sticky;top:0;background:var(--card)}
-@media (max-width:820px){.wrap{padding:16px 14px 40px}.headtools{width:100%;justify-content:space-between}.tiles.three{grid-template-columns:minmax(0,1fr)}.tiles.three .val{font-size:24px}}
+@media (max-width:1100px){.tiles.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:820px){.wrap{padding:16px 14px 40px}.headtools{width:100%;justify-content:space-between}.tiles.four .val{font-size:22px}}
+@media (max-width:480px){.tiles.four{grid-template-columns:minmax(0,1fr)}}
 </style>
 </head>
 <body>
@@ -240,7 +242,7 @@ html,body{height:auto}
     <div class="ctl wide"><span>Course</span><div class="chips" id="g-cat"></div></div>
   </div>
   <div class="view on">
-    <div class="tiles three" id="tiles"></div>
+    <div class="tiles four" id="tiles"></div>
     <div class="card"><h2 id="m-t"></h2><p class="sub" id="m-s"></p><div id="m-trend"></div></div>
     <div class="g2">
       <div class="card"><h2>Meta ad leads by course</h2><p class="sub" id="m-cs"></p><div class="hb" id="m-cat"></div></div>
@@ -251,10 +253,17 @@ html,body{height:auto}
       <div class="card"><h2>Metrix leads by course</h2><p class="sub" id="x-cs"></p><div class="hb" id="x-cat"></div></div>
       <div class="card"><h2 id="x-tt">Metrix leads table</h2><p class="sub">Count per period and course</p><div class="scroll tall"><table id="x-table" class="mx"></table></div></div>
     </div>
+    <div class="card"><h2 id="o-t"></h2><p class="sub">Leads in Metrix whose source is organic (Instagram bio, inbox, story and comment, YouTube bio, website, referral, call, walk-in). Tap a bar to look at that period only.</p><div id="o-trend"></div></div>
+    <div class="g2">
+      <div class="card"><h2>Organic leads by source</h2><p class="sub" id="o-ss"></p><div class="hb" id="o-src"></div></div>
+      <div class="card"><h2>Organic leads by course</h2><p class="sub" id="o-cs"></p><div class="hb" id="o-cat"></div></div>
+    </div>
+    <div class="card"><h2>Organic leads table</h2><p class="sub">Count per period and source</p><div class="scroll tall"><table id="o-table" class="mx"></table></div></div>
     <div class="note"><b>How these are counted</b><ul>
       <li>Meta ad leads are from the Rootme Skills ad account only. For each campaign, form leads and chat conversations are compared and the higher one is counted.</li>
       <li>Metrix leads are every lead created in Metrix on that day, from any source. Rootme Skills means Video Editing, Contech Marketing, AI Web Development and Graphic Design, including their workshops. Other leads are English, other courses and leads with an empty Campaign field.</li>
-      <li>The two counts will not match exactly: one ad chat is not always entered in Metrix, and Metrix also holds leads that did not come from ads.</li>
+      <li>Organic leads are Metrix leads from these sources: IG Bio RTM, IG Inbox RTM, IG Bio Faris Root, IG Inbox Faris Root, IG Story Faris Root, YT Bio Faris Root, YT Bio RTM, IG Comment Rootmedia, Website RTM, Referral, Call and Walk-In. They are already included in the Metrix counts above.</li>
+      <li>The Meta and Metrix counts will not match exactly: one ad chat is not always entered in Metrix, and Metrix also holds leads that did not come from ads.</li>
       <li>Weeks here are fixed blocks of the month: 1–7, 8–14, 15–21, 22–28 and 29 to month end.</li>
     </ul></div>
   </div>
@@ -300,6 +309,9 @@ function inScope(d){return S.gran==='month'?MKEYS.includes(d.slice(0,7)):d.slice
 function selMatch(d,g){if(!S.sel)return true;if(S.selG==='month')return d.slice(0,7)===S.sel;if(S.selG==='week')return wk(d)===S.sel;return g==='day'?d===S.sel:wk(d)===wk(S.sel)&&false||d===S.sel}
 const metaRows=()=>MROWS.filter(r=>inScope(r.a)&&(S.cat==='ALL'||r.cat===S.cat)).map(r=>({d:r.a,cat:r.cat,v:r.v}));
 const mxAll=()=>LEADS.cube.filter(r=>inScope(r[0])&&(S.cat==='ALL'||r[1]===S.cat)).map(r=>({d:r[0],cat:r[1],v:r[4]}));
+const SRC=['IG Bio RTM','IG Inbox RTM','IG Bio Faris Root','IG Inbox Faris Root','IG Story Faris Root','YT Bio Faris Root','YT Bio RTM','IG Comment Rootmedia','Website RTM','Referral','Call','Walk-In'];
+const SCOL=['var(--c-ct)','var(--c-ve)','var(--c-vew)','var(--c-ai)','var(--c-aiw)','var(--c-gd)'];
+const orgRows=()=>(LEADS.organic||[]).filter(r=>inScope(r[0])&&(S.cat==='ALL'||r[2]===S.cat)).map(r=>({d:r[0],src:r[1],cat:r[2],v:r[3]}));
 const grpOk=c=>S.grp==='ALL'||(S.grp==='SK')===isSK(c);
 function niceMax(v){if(v<=4)return 4;const p=Math.pow(10,Math.floor(Math.log10(v)));const f=v/p;return (f<=1?1:f<=2?2:f<=4?4:f<=5?5:f<=8?8:10)*p}
 function selText(){const M=minfo(S.month);return S.sel?plabel(S.sel,S.selG,true):S.gran==='month'?'all months shown':M.label+' '+S.month.slice(0,4)}
@@ -315,8 +327,8 @@ function trend(el,rows,g,last,color){
 }
 function inSel(d){if(!S.sel)return true;return pkey(d,S.selG)===S.sel}
 function byCat(rows){const m={};rows.filter(r=>inSel(r.d)).forEach(r=>m[r.cat]=(m[r.cat]||0)+r.v);const t=Object.values(m).reduce((a,b)=>a+b,0);return {m,t}}
-function table(el,rows,g,last){
-  const P=periods(g,last),cats=CATS.filter(c=>rows.some(r=>r.cat===c[0])),m={};rows.forEach(r=>{const k=pkey(r.d,g)+'|'+r.cat;m[k]=(m[k]||0)+r.v});
+function table(el,rows,g,last,cols,key){
+  key=key||'cat';const P=periods(g,last),cats=(cols||CATS).filter(c=>rows.some(r=>r[key]===c[0])),m={};rows.forEach(r=>{const k=pkey(r.d,g)+'|'+r[key];m[k]=(m[k]||0)+r.v});
   const tot=c=>P.reduce((a,k)=>a+(m[k+'|'+c]||0),0);
   el.innerHTML=`<tr><th>${g==='day'?'Day':g==='week'?'Week':'Month'}</th>`+cats.map(c=>`<th>${dot(c[2])}${esc(c[1])}</th>`).join('')+`<th>Total</th></tr>`+P.map(k=>{const t=cats.reduce((a,c)=>a+(m[k+'|'+c[0]]||0),0);return `<tr><td>${esc(plabel(k,g,g!=='day')+(g==='day'?' '+MON[+k.slice(5,7)-1]:''))}</td>`+cats.map(c=>`<td>${m[k+'|'+c[0]]?n(m[k+'|'+c[0]]):'·'}</td>`).join('')+`<td><b>${n(t)}</b></td></tr>`}).join('')+`<tr class="tot"><td>Total</td>`+cats.map(c=>`<td>${n(tot(c[0]))}</td>`).join('')+`<td>${n(cats.reduce((a,c)=>a+tot(c[0]),0))}</td></tr>`;
 }
@@ -348,6 +360,14 @@ function draw(){
   hbars($('x-cat'),(skT?[{head:'Rootme Skills',right:n(skT)+' · '+pct(skT,xc.t)}]:[]).concat(CATS.filter(c=>isSK(c[0])&&xc.m[c[0]]).map(row),otT?[{head:'Other leads',right:n(otT)+' · '+pct(otT,xc.t)}]:[],CATS.filter(c=>!isSK(c[0])&&xc.m[c[0]]).map(row)));
   $('x-tt').textContent='Metrix table · '+gname;
   table($('x-table'),xr,xg,leadLast);
+  const or=orgRows(),os={},oc=byCat(or);or.filter(r=>inSel(r.d)).forEach(r=>os[r.src]=(os[r.src]||0)+r.v);
+  const srcs=SRC.filter(s=>or.some(r=>r.src===s)).sort((a,b)=>(os[b]||0)-(os[a]||0)),scol=Object.fromEntries(srcs.map((s,i)=>[s,i<5?SCOL[i]:'var(--c-ot)']));
+  $('tiles').insertAdjacentHTML('beforeend',tile('Organic leads (in Metrix)',n(oc.t),esc(sub),'var(--c-ct)',IC.crm));
+  $('o-t').textContent='Organic leads '+word[xg];
+  trend($('o-trend'),or,xg,leadLast,'var(--c-ct)');
+  $('o-ss').textContent=sub;hbars($('o-src'),srcs.filter(s=>os[s]).map(s=>({label:s,color:scol[s],value:os[s],sub:pct(os[s],oc.t)})));
+  $('o-cs').textContent=sub;hbars($('o-cat'),CATS.filter(c=>oc.m[c[0]]).map(c=>({label:c[1],color:c[2],value:oc.m[c[0]],sub:pct(oc.m[c[0]],oc.t)})));
+  table($('o-table'),or,xg,leadLast,srcs.map(s=>[s,s,scol[s]]),'src');
   const fr=d=>d?dm(d)+' '+d.slice(0,4):'not loaded';$('fresh').textContent='Meta ads updated '+fr(MD.asOf)+' · Metrix leads updated to '+fr(LEADS.asOf);
 }
 const root=document.documentElement;
