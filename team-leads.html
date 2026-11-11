@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Rootme Team Leads</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* layout: 3-column shell on desktop (nav / main / glance rail); one column with a bottom tab bar on phones */
+  --bg:#f8f9fc; --card:#ffffff; --line:#f3f4f6; --line2:#e5e7eb; --track:#f1f3f8;
+  --ink:#1e293b; --muted:#64748b; --faint:#94a3b8;
+  --blue:#0d6efd; --soft-blue:#eff6ff; --soft-orange:#fff7ed; --note-ink:#7c2d12; --note-head:#9a3412;
+  --promo:linear-gradient(135deg,#eff6ff,#eef2ff); --tip-bg:#111827; --tip-ink:#ffffff; --tip-sub:#cbd5e1;
+  --c-ve:#0d6efd; --c-vew:#f97316; --c-ct:#10b981; --c-ai:#a855f7; --c-gd:#b45309; --c-aiw:#ec4899; --c-ot:#94a3b8; --c-un:#cbd5e1;
+  --g-imp:#0d6efd; --g-won:#10b981; --g-oth:#a3aec2; --g-bad:#ef4444;
+  --rgb-imp:13,110,253; --rgb-won:16,185,129; --rgb-oth:100,116,139; --rgb-bad:239,68,68;
+  --font:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f131c; --card:#171c28; --line:#222a3a; --line2:#2f394c; --track:#222a3a;
+  --ink:#e8edf5; --muted:#9aa7bb; --faint:#6f7c93;
+  --blue:#3b82f6; --soft-blue:rgba(59,130,246,.16); --soft-orange:rgba(249,115,22,.13); --note-ink:#fdba74; --note-head:#fb923c;
+  --promo:linear-gradient(135deg,rgba(59,130,246,.14),rgba(129,140,248,.14)); --tip-bg:#05070c; --tip-ink:#f1f5f9; --tip-sub:#9aa7bb;
+  --c-ve:#3b82f6; --c-vew:#dd6110; --c-ct:#0ea574; --c-ai:#a855f7; --c-gd:#b8651a; --c-aiw:#ec4899; --c-ot:#7a879c; --c-un:#4a5568;
+  --g-imp:#3b82f6; --g-won:#0ea574; --g-oth:#56627a; --g-bad:#ef4444;
+  --rgb-imp:59,130,246; --rgb-won:14,165,116; --rgb-oth:148,163,184; --rgb-bad:239,68,68;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0f131c; --card:#171c28; --line:#222a3a; --line2:#2f394c; --track:#222a3a;
+  --ink:#e8edf5; --muted:#9aa7bb; --faint:#6f7c93;
+  --blue:#3b82f6; --soft-blue:rgba(59,130,246,.16); --soft-orange:rgba(249,115,22,.13); --note-ink:#fdba74; --note-head:#fb923c;
+  --promo:linear-gradient(135deg,rgba(59,130,246,.14),rgba(129,140,248,.14)); --tip-bg:#05070c; --tip-ink:#f1f5f9; --tip-sub:#9aa7bb;
+  --c-ve:#3b82f6; --c-vew:#dd6110; --c-ct:#0ea574; --c-ai:#a855f7; --c-gd:#b8651a; --c-aiw:#ec4899; --c-ot:#7a879c; --c-un:#4a5568;
+  --g-imp:#3b82f6; --g-won:#0ea574; --g-oth:#56627a; --g-bad:#ef4444;
+  --rgb-imp:59,130,246; --rgb-won:14,165,116; --rgb-oth:148,163,184; --rgb-bad:239,68,68;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+h1,h2,h3{margin:0;text-wrap:balance}
+.num{font-variant-numeric:tabular-nums}
+.app{display:grid;grid-template-columns:256px minmax(0,1fr) 320px;height:100%}
+.nav{background:var(--card);border-right:1px solid var(--line);padding:28px 20px;display:flex;flex-direction:column;gap:24px;overflow:auto}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px}
+.glyph{display:flex}.glyph i{width:18px;height:18px;border-radius:50%;background:#0d6efd;display:block}.glyph i+i{background:#f97316;margin-left:-6px;opacity:.9}
+.org{background:var(--soft-orange);border-radius:12px;padding:12px 14px;font-weight:700;color:var(--note-head);display:flex;flex-direction:column;gap:2px}
+.org small{font-weight:500;color:var(--note-ink);font-size:12px}
+.links{display:flex;flex-direction:column;gap:4px}
+.links a{position:relative;display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;color:var(--muted);font-weight:600;text-decoration:none;transition:all .3s}
+.links a:hover{background:var(--bg);color:var(--ink)}
+.links a.on{color:var(--blue);background:var(--soft-blue)}
+.links a.on::before{content:"";position:absolute;left:-20px;top:10px;bottom:10px;width:4px;border-radius:0 4px 4px 0;background:var(--blue)}
+.links svg{width:18px;height:18px;flex:none}
+.links .cnt{margin-left:auto;background:#f97316;color:#fff;font-size:11px;font-weight:700;border-radius:999px;padding:2px 8px}
+.promo{margin-top:auto;border-radius:20px;padding:18px;background:var(--promo);font-size:12.5px;color:var(--muted)}
+.promo b{display:block;color:var(--ink);font-size:13px;margin-bottom:4px}
+main{padding:32px;overflow:auto;min-width:0}
+.head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:22px}
+.head h1{font-size:30px;font-weight:800;letter-spacing:-.02em}
+.head p{margin:4px 0 0;color:var(--muted);font-weight:500}
+.mbrand{display:none}
+.headtools{display:flex;align-items:center;gap:10px}
+.iconbtn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line2);background:var(--card);display:grid;place-items:center;color:var(--muted);transition:all .3s}
+.iconbtn:hover{color:var(--ink)}
+.iconbtn svg{width:18px;height:18px}
+.view{display:none;flex-direction:column;gap:20px}
+.view.on{display:flex}
+.controls{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
+.ctl{display:flex;align-items:center;gap:8px;min-width:0}
+.ctl>span{font-size:12px;font-weight:600;color:var(--muted);flex:none}
+.seg{display:inline-flex;background:var(--card);border:1px solid var(--line2);border-radius:12px;padding:3px}
+.seg button{border:0;background:none;padding:7px 14px;border-radius:9px;font-weight:600;color:var(--muted);transition:all .3s;white-space:nowrap}
+.seg button.on{background:var(--blue);color:#fff;box-shadow:0 8px 16px -6px rgba(13,110,253,.35)}
+select,input[type=search]{font:inherit;font-weight:600;border:1px solid var(--line2);background:var(--card);border-radius:12px;padding:8px 12px;color:var(--ink);max-width:100%}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line2);background:var(--card);border-radius:999px;padding:6px 12px;font-weight:600;font-size:12.5px;color:var(--muted);display:inline-flex;align-items:center;gap:6px;transition:all .3s;white-space:nowrap;flex:none}
+.chip i,.dot{width:9px;height:9px;border-radius:50%;display:inline-block;flex:none}
+.chip.on{border-color:var(--ink);color:var(--ink)}
+button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,.col:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:0 1px 2px rgba(15,23,42,.04);transition:box-shadow .3s;min-width:0}
+.card:hover{box-shadow:0 10px 24px -14px rgba(15,23,42,.18)}
+.card h2{font-size:16px;font-weight:700}
+.card .sub{color:var(--muted);font-size:12.5px;font-weight:500;margin:2px 0 16px}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.tile{display:flex;gap:14px;align-items:center;padding:18px}
+.tile .ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;flex:none}
+.tile .ic svg{width:20px;height:20px}
+.tile .lab{color:var(--muted);font-weight:500;font-size:12.5px}
+.tile .val{font-size:22px;font-weight:800;letter-spacing:-.01em}
+.tile .hint{color:var(--faint);font-size:11.5px;font-weight:500}
+.g2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
+.stackc{display:flex;flex-direction:column;gap:20px;min-width:0}
+.donutwrap{display:flex;gap:20px;align-items:center;flex-wrap:wrap;justify-content:center}
+.donutwrap svg{width:190px;height:190px;flex:none}
+.legend{flex:1;min-width:200px;display:flex;flex-direction:column;gap:8px}
+.legend .row{display:grid;grid-template-columns:auto 1fr auto auto;gap:8px;align-items:center;font-weight:600;font-size:13px}
+.legend .row span:nth-child(4){color:var(--muted);width:40px;text-align:right;font-weight:500}
+.hb{display:flex;flex-direction:column;gap:10px}
+.hb .r{display:grid;grid-template-columns:minmax(84px,150px) 1fr auto;gap:10px;align-items:center;font-size:13px;font-weight:600}
+.hb .r .l{display:flex;align-items:center;gap:7px;min-width:0}
+.hb .r .l span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hb .track{height:12px;background:var(--track);border-radius:6px;overflow:hidden}
+.hb .fill{height:100%;border-radius:0 4px 4px 0;transition:width .5s ease-in-out;min-width:2px}
+.hb .v{min-width:56px;text-align:right}
+.hb .v small{color:var(--muted);font-weight:500;margin-left:4px}
+.hb .gh{font-size:11.5px;font-weight:700;color:var(--muted);display:flex;align-items:center;gap:7px;margin-top:6px}
+.hb .gh:first-child{margin-top:0}
+.hb .gh b{color:var(--ink);margin-left:auto}
+/* quality bars */
+.qb{display:flex;flex-direction:column;gap:16px}
+.qb .q .top{display:flex;justify-content:space-between;gap:10px;align-items:baseline;font-weight:700;font-size:13.5px;margin-bottom:6px}
+.qb .q .top .l{display:flex;align-items:center;gap:7px;min-width:0}
+.qb .q .top small{font-weight:500;color:var(--muted);font-size:12px;text-align:right}
+.qb .q .top small b{color:var(--ink)}
+.qbar{display:flex;height:26px;border-radius:8px;overflow:hidden;gap:2px;background:var(--card)}
+.qbar i{display:flex;align-items:center;justify-content:center;font-style:normal;font-size:11.5px;font-weight:700;color:#fff;min-width:0;overflow:hidden;transition:flex .5s ease-in-out}
+.qkeys{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:16px}
+.qkeys span{display:inline-flex;align-items:center;gap:6px}
+.qkeys .dot{border-radius:3px}
+/* trend */
+.plot{position:relative;height:230px;margin-left:38px;border-bottom:1px solid var(--line2)}
+.grid{position:absolute;left:0;right:0;border-top:1px dashed var(--line2)}
+.grid span{position:absolute;left:-38px;top:-8px;width:32px;text-align:right;font-size:11px;color:var(--faint);font-weight:500}
+.cols{position:absolute;inset:0;display:flex;align-items:flex-end;gap:3px;padding:0 3px}
+.col{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;cursor:pointer;border-radius:8px;min-width:0}
+.col:hover{background:rgba(var(--rgb-imp),.07)}
+.col.sel{background:rgba(var(--rgb-imp),.13)}
+.col.dim .bar{opacity:.35}
+.col .lbl{font-size:11px;font-weight:700;color:var(--ink);margin-bottom:3px;white-space:nowrap}
+.col .bar{width:min(72%,44px);background:var(--blue);border-radius:6px 6px 0 0;transition:height .5s ease-in-out,opacity .3s;min-height:2px}
+.xl{display:flex;gap:3px;margin-left:38px;padding:6px 3px 0}
+.xl span{flex:1;text-align:center;font-size:11px;color:var(--muted);font-weight:500;min-width:0;white-space:nowrap}
+.link{border:0;background:none;color:var(--blue);font-weight:700;padding:0}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:13px}
+th{font-size:11.5px;font-weight:600;color:var(--muted);text-align:right;padding:8px 10px;border-bottom:1px solid var(--line2);white-space:nowrap}
+td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+td.t{text-align:left;white-space:normal;min-width:200px}
+th.l,td.l{text-align:left}
+table.mx th{white-space:normal;padding:8px 6px;vertical-align:bottom;line-height:1.25}table.mx td{padding:9px 6px}table.mx td:first-child{white-space:nowrap}
+table.mx th .dot{border-radius:3px;margin-right:4px;width:7px;height:7px}
+tr:last-child td{border-bottom:0}
+tr.tot td{font-weight:800;border-top:1px solid var(--line2)}
+td.heat{border-radius:8px;font-weight:600}
+.tag{display:inline-flex;align-items:center;gap:6px;font-weight:600}
+.pill{display:inline-block;border-radius:999px;padding:2px 9px;font-size:11.5px;font-weight:700;background:var(--track);color:var(--muted)}
+.teamcards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.tc{text-align:left;border:1px solid var(--line);background:var(--card);border-radius:20px;padding:16px;transition:all .3s;min-width:0}
+.tc:hover{transform:translateY(-2px);box-shadow:0 10px 24px -14px rgba(15,23,42,.25)}
+.tc.on{border-color:var(--ink)}
+.tc .n{display:flex;align-items:center;gap:7px;font-weight:700;font-size:13px}
+.tc .big{font-size:24px;font-weight:800;margin:6px 0 0}
+.tc .m{font-size:12px;color:var(--muted);font-weight:500}
+.tc .m b{color:var(--ink)}
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.filters input{border-radius:999px;padding-left:16px;min-width:180px;flex:1;font-weight:500}
+.ck{width:18px;height:18px;accent-color:#10b981}
+.cnt-line{font-size:12.5px;font-weight:600;color:var(--muted);margin-bottom:8px}.cnt-line b{color:var(--ink)}
+.side{background:var(--card);border-left:1px solid var(--line);padding:28px 22px;overflow:auto;display:flex;flex-direction:column;gap:22px}
+.side h3{font-size:14px;font-weight:700}
+.side .cap{color:var(--muted);font-size:12px;font-weight:500;margin-top:2px}
+.stat{display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line);font-weight:500;color:var(--muted);gap:10px}
+.stat:last-child{border-bottom:0}
+.stat b{color:var(--ink);font-size:16px;font-weight:800;white-space:nowrap}
+.note{background:var(--soft-orange);border-radius:20px;padding:16px;font-size:12.5px;color:var(--note-ink)}
+.note b{display:block;margin-bottom:6px;color:var(--note-head)}
+.note ul{margin:0;padding-left:16px;display:flex;flex-direction:column;gap:5px}
+.todo{display:flex;flex-direction:column;gap:10px;font-size:12.5px;font-weight:500;color:var(--muted)}
+.todo div{display:flex;gap:10px;align-items:flex-start}
+.todo i{width:8px;height:8px;border-radius:50%;margin-top:5px;flex:none}
+.todo b{color:var(--ink)}
+#tip{position:fixed;z-index:30;pointer-events:none;background:var(--tip-bg);color:var(--tip-ink);border-radius:12px;padding:10px 12px;font-size:12px;font-weight:500;box-shadow:0 10px 24px -8px rgba(0,0,0,.4);display:none;max-width:260px}
+#tip b{display:block;font-size:12.5px;margin-bottom:4px}
+#tip .tr{display:flex;justify-content:space-between;gap:14px;align-items:center}
+#tip .tr span:first-child{display:inline-flex;align-items:center;gap:6px;color:var(--tip-sub)}
+@media (max-width:1320px){.app{grid-template-columns:232px minmax(0,1fr);height:auto}.side{grid-column:1/-1;border-left:0;border-top:1px solid var(--line)}html,body{height:auto}main,.nav{overflow:visible}.nav{position:sticky;top:0;height:100vh}}
+@media (max-width:1100px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.teamcards{grid-template-columns:repeat(3,minmax(0,1fr))}.g2{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:820px){
+  .app{display:block}
+  .nav{position:fixed;left:0;right:0;bottom:0;top:auto;height:auto;z-index:20;padding:6px 8px calc(6px + env(safe-area-inset-bottom));border-right:0;border-top:1px solid var(--line2);box-shadow:0 -8px 24px -16px rgba(0,0,0,.35);overflow:visible}
+  .nav .logo,.nav .org,.nav .promo{display:none}
+  .links{flex-direction:row;gap:2px}
+  .links a{flex:1;flex-direction:column;gap:3px;padding:8px 2px;font-size:11px;text-align:center;line-height:1.2}
+  .links a.on::before{display:none}
+  .links svg{width:20px;height:20px}
+  .links .cnt{position:absolute;top:2px;left:50%;margin-left:6px;font-size:9.5px;padding:1px 5px}
+  main{padding:16px 14px 96px}
+  .mbrand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px;width:100%}
+  .head{align-items:flex-start;margin-bottom:16px;gap:10px}
+  .head h1{font-size:24px}.head p{font-size:13px}
+  .headtools{width:100%;justify-content:space-between}
+  .view{gap:14px}
+  .card{padding:16px;border-radius:20px}
+  .tiles{gap:10px}.tile{padding:14px;gap:10px}.tile .ic{width:36px;height:36px;border-radius:12px}.tile .val{font-size:18px}
+  .controls{gap:10px}
+  .ctl.wide{width:100%}
+  .chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .chips::-webkit-scrollbar{display:none}
+  .teamcards{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .plot{height:190px}
+  .side{padding:20px 16px 110px}
+  .hb .r{grid-template-columns:minmax(70px,112px) 1fr auto;gap:8px}
+  .filters select{flex:1;min-width:130px}
+  .seg{max-width:100%;overflow-x:auto}
+  .qb .q .top{flex-direction:column;gap:2px}.qb .q .top small{text-align:left}
+  #tip{display:none!important}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+html,body{height:auto}
+.wrap{max-width:1160px;margin:0 auto;padding:28px 20px 60px}
+.brandline{display:flex;align-items:center;gap:8px;font-weight:800;font-size:14px;color:var(--muted);margin-bottom:6px}
+.tiles.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.tiles.two .val{font-size:30px}
+.scroll.tall{max-height:330px;overflow:auto}
+.scroll.tall th{position:sticky;top:0;background:var(--card)}
+@media (max-width:820px){.wrap{padding:16px 14px 40px}.headtools{width:100%;justify-content:space-between}.tiles.two .val{font-size:24px}}
+@media (max-width:480px){.tiles.two{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div><div class="brandline"><span class="glyph"><i></i><i></i></span>Rootme · Team leads</div><h1>Lead counts</h1><p id="fresh"></p></div>
+    <div class="headtools"><div class="seg" id="g-month"></div><button type="button" class="iconbtn" id="theme" aria-label="Switch between light and dark mode"></button></div>
+  </div>
+  <div class="controls" style="margin-bottom:20px">
+    <div class="ctl"><span>View by</span><div class="seg" id="g-gran"></div></div>
+    <div class="ctl"><span>Showing</span><select id="g-period" aria-label="Period"></select></div>
+    <div class="ctl wide"><span>Course</span><div class="chips" id="g-cat"></div></div>
+  </div>
+  <div class="view on">
+    <div class="tiles two" id="tiles"></div>
+    <div class="card"><h2 id="m-t"></h2><p class="sub" id="m-s"></p><div id="m-trend"></div></div>
+    <div class="g2">
+      <div class="card"><h2>Meta ad leads by course</h2><p class="sub" id="m-cs"></p><div class="hb" id="m-cat"></div></div>
+      <div class="card"><h2>Meta ad leads table</h2><p class="sub">Count per period and course</p><div class="scroll tall"><table id="m-table" class="mx"></table></div></div>
+    </div>
+    <div class="card"><h2 id="x-t"></h2><p class="sub">Leads created in Metrix, counted on the day they were created. Tap a bar to look at that period only.</p><div id="x-trend"></div></div>
+    <div class="g2">
+      <div class="card"><h2>Metrix leads by course</h2><p class="sub" id="x-cs"></p><div class="hb" id="x-cat"></div></div>
+      <div class="card"><h2>Metrix leads table</h2><p class="sub">Count per period and course</p><div class="scroll tall"><table id="x-table" class="mx"></table></div></div>
+    </div>
+    <div class="note"><b>How these are counted</b><ul>
+      <li>Meta ad leads are from the Rootme Skills ad account only. For each campaign, form leads and chat conversations are compared and the higher one is counted.</li>
+      <li>Metrix leads are every lead created in Metrix on that day, from any source. Leads with an empty Campaign field show as "No campaign".</li>
+      <li>The two counts will not match exactly: one ad chat is not always entered in Metrix, and Metrix also holds leads that did not come from ads.</li>
+      <li>Weeks here are fixed blocks of the month: 1–7, 8–14, 15–21, 22–28 and 29 to month end.</li>
+    </ul></div>
+  </div>
+</div>
+<div id="tip"></div>
+<script src="metadaily.js"></script>
+<script src="leads.js"></script>
+<script>
+const MD=window.METADAILY||{asOf:'',rows:[]},LEADS=window.LEADS||{asOf:'',cube:[]};
+const CATS=[['VE','Video Editing','var(--c-ve)'],['VEW','Video Editing Workshop','var(--c-vew)'],['CT','Contech Marketing','var(--c-ct)'],['AI','AI Web Development','var(--c-ai)'],['GD','Graphic Design','var(--c-gd)'],['AIW','AI Web Workshop','var(--c-aiw)'],['OT','Other courses','var(--c-ot)'],['UN','No campaign','var(--c-un)'],['NA','Not yet assigned','var(--c-un)']];
+const CAT=Object.fromEntries(CATS.map(c=>[c[0],{name:c[1],color:c[2]}]));
+const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],FULLM=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const n=v=>Math.round(v).toLocaleString('en-IN');
+const pct=(a,b)=>b?Math.round(a/b*100)+'%':'–';
+const dot=c=>`<i class="dot" style="background:${c}"></i>`;
+const dm=d=>+d.slice(8)+' '+MON[+d.slice(5,7)-1];
+const tip=$('tip');
+function showTip(e,html){tip.innerHTML=html;tip.style.display='block';const r=tip.getBoundingClientRect();let x=e.clientX+14,y=e.clientY+14;if(x+r.width>innerWidth-8)x=e.clientX-r.width-14;if(y+r.height>innerHeight-8)y=e.clientY-r.height-14;tip.style.left=Math.max(8,x)+'px';tip.style.top=Math.max(8,y)+'px'}
+function hideTip(){tip.style.display='none'}
+function bindTips(root){root.querySelectorAll('[data-tip]').forEach(el=>{el.addEventListener('mousemove',e=>showTip(e,el.dataset.tip));el.addEventListener('mouseleave',hideTip)})}
+function seg(el,opts,cur,on){el.innerHTML=opts.map(o=>`<button type="button" class="${o[0]===cur?'on':''}" data-v="${o[0]}" aria-pressed="${o[0]===cur}">${esc(o[1])}</button>`).join('');el.querySelectorAll('button').forEach(b=>b.onclick=()=>on(b.dataset.v))}
+function hbars(el,items){const max=Math.max(1,...items.map(i=>i.value||0));el.innerHTML=items.length?items.map(i=>`<div class="r"><div class="l">${dot(i.color)}<span>${esc(i.label)}</span></div><div class="track"><div class="fill" style="width:${i.value/max*100}%;background:${i.color}"></div></div><div class="v num">${n(i.value)}<small>${esc(i.sub||'')}</small></div></div>`).join(''):'<div class="sub">No leads in this selection.</div>'}
+function tile(lab,val,hint,color,icon){return `<div class="card tile"><div class="ic" style="background:color-mix(in srgb,${color} 14%,transparent);color:${color}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${icon}</svg></div><div><div class="lab">${lab}</div><div class="val num">${val}</div><div class="hint">${hint}</div></div></div>`}
+const IC={ads:'<path d="M4 19V9M10 19V5M16 19v-7M21 19H3"/>',crm:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.4 3.2-5.5 6.5-5.5s5.9 2.1 6.5 5.5"/><path d="M16 4.8a3.5 3.5 0 0 1 0 6.400M18.500 14.800c1.700.800 2.700 2.600 3 5.200"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.900 4.900l1.400 1.400M17.700 17.700l1.400 1.400M2 12h2M20 12h2M4.900 19.100l1.400-1.400M17.700 6.300l1.400-1.400"/>',moon:'<path d="M20 14.500A8 8 0 0 1 9.500 4a8 8 0 1 0 10.500 10.500z"/>'};
+
+/* Meta rows -> counted value: per campaign and month, use whichever of form leads / chats is higher over the month */
+const MROWS=(()=>{const t={};MD.rows.forEach(r=>{const k=r[2]+'|'+r[0].slice(0,7);(t[k]=t[k]||[0,0]);t[k][0]+=r[4];t[k][1]+=r[5]});
+  return MD.rows.map(r=>{const m=t[r[2]+'|'+r[0].slice(0,7)];return {a:r[0],b:r[1],cat:r[3],v:m[0]>=m[1]?r[4]:r[5]}}).filter(r=>r.v)})();
+const MKEYS=[...new Set(MD.rows.map(r=>r[0].slice(0,7)))].sort().slice(-3);
+const DAILY=Object.fromEntries(MKEYS.map(k=>[k,MD.rows.some(r=>r[0].slice(0,7)===k&&r[0]===r[1])]));
+const S={month:MKEYS[MKEYS.length-1],gran:'day',sel:null,cat:'ALL'};
+function minfo(k){const y=+k.slice(0,4),m=+k.slice(5,7),dim=new Date(y,m,0).getDate();const cur=MD.asOf.slice(0,7)===k,last=cur?Math.min(dim,+MD.asOf.slice(8)):dim;return {key:k,name:FULLM[m-1],dim,last,label:cur&&last<dim?`1–${last} ${FULLM[m-1]}`:FULLM[m-1],short:cur&&last<dim?`1–${last} ${FULLM[m-1].slice(0,3)}`:FULLM[m-1]}}
+const dd=(k,i)=>k+'-'+String(i).padStart(2,'0');
+const wk=d=>{const i=+d.slice(8);const s=i>=29?29:Math.floor((i-1)/7)*7+1;return dd(d.slice(0,7),s)};
+function gran(src){return S.gran==='day'&&src==='meta'&&!DAILY[S.month]?'week':S.gran}
+function pkey(d,g){return g==='day'?d:g==='week'?wk(d):d.slice(0,7)}
+function periods(g,last){const M=minfo(S.month);if(g==='month')return MKEYS;const days=Array.from({length:last},(_,i)=>dd(S.month,i+1));return g==='day'?days:[...new Set(days.map(wk))]}
+function plabel(k,g,long){if(g==='month')return MON[+k.slice(5)-1]+(long?' '+k.slice(0,4):'');if(g==='day')return long?dm(k)+' '+k.slice(0,4):String(+k.slice(8));const M=minfo(k.slice(0,7)),s=+k.slice(8),e=Math.min(s>=29?M.dim:s+6,M.dim);return s+'–'+e+' '+MON[+k.slice(5,7)-1]}
+function inScope(d){return S.gran==='month'?MKEYS.includes(d.slice(0,7)):d.slice(0,7)===S.month}
+function selMatch(d,g){if(!S.sel)return true;if(S.selG==='month')return d.slice(0,7)===S.sel;if(S.selG==='week')return wk(d)===S.sel;return g==='day'?d===S.sel:wk(d)===wk(S.sel)&&false||d===S.sel}
+const metaRows=()=>MROWS.filter(r=>inScope(r.a)&&(S.cat==='ALL'||r.cat===S.cat)).map(r=>({d:r.a,cat:r.cat,v:r.v}));
+const mxRows=()=>LEADS.cube.filter(r=>inScope(r[0])&&(S.cat==='ALL'||r[1]===S.cat)).map(r=>({d:r[0],cat:r[1],v:r[4]}));
+function niceMax(v){if(v<=4)return 4;const p=Math.pow(10,Math.floor(Math.log10(v)));const f=v/p;return (f<=1?1:f<=2?2:f<=4?4:f<=5?5:f<=8?8:10)*p}
+function selText(){const M=minfo(S.month);return S.sel?plabel(S.sel,S.selG,true):S.gran==='month'?'all months shown':M.label+' '+S.month.slice(0,4)}
+function trend(el,rows,g,last,color){
+  const P=periods(g,last),agg={};rows.forEach(r=>{const k=pkey(r.d,g);agg[k]=(agg[k]||0)+r.v});
+  const max=niceMax(Math.max(1,...P.map(k=>agg[k]||0))*1.1),w=Math.max(200,(el.clientWidth||600)-38)/P.length,showVal=w>=30,step=g==='day'?Math.max(1,Math.ceil(17/w)):1;
+  let h=`<div class="plot">`;[1,.5].forEach(f=>h+=`<div class="grid" style="bottom:${f*100}%"><span>${n(max*f)}</span></div>`);
+  h+=`<div class="cols">`+P.map(k=>{const v=agg[k]||0,on=S.sel===k&&S.selG===g;return `<div class="col ${on?'sel':''} ${S.sel&&!on?'dim':''}" data-k="${k}" data-tip="${esc(`<b>${esc(plabel(k,g,true))}</b>${n(v)} leads`)}" role="button" tabindex="0" aria-label="${esc(plabel(k,g,true))}: ${v} leads">${showVal?`<span class="lbl num">${n(v)}</span>`:''}<div class="bar" style="height:${v/max*100}%;background:${color}"></div></div>`}).join('')+`</div></div>`;
+  h+=`<div class="xl">`+P.map((k,i)=>`<span>${i%step===0?esc(plabel(k,g)):''}</span>`).join('')+`</div>`;
+  el.innerHTML=h;bindTips(el);
+  el.querySelectorAll('.col').forEach(c=>{const go=()=>{const same=S.sel===c.dataset.k&&S.selG===g;S.sel=same?null:c.dataset.k;S.selG=g;hideTip();draw()};c.onclick=go;c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}});
+  return {P,agg};
+}
+function inSel(d){if(!S.sel)return true;return pkey(d,S.selG)===S.sel}
+function byCat(rows){const m={};rows.filter(r=>inSel(r.d)).forEach(r=>m[r.cat]=(m[r.cat]||0)+r.v);const t=Object.values(m).reduce((a,b)=>a+b,0);return {m,t}}
+function table(el,rows,g,last){
+  const P=periods(g,last),cats=CATS.filter(c=>rows.some(r=>r.cat===c[0])),m={};rows.forEach(r=>{const k=pkey(r.d,g)+'|'+r.cat;m[k]=(m[k]||0)+r.v});
+  const tot=c=>P.reduce((a,k)=>a+(m[k+'|'+c]||0),0);
+  el.innerHTML=`<tr><th>${g==='day'?'Day':g==='week'?'Week':'Month'}</th>`+cats.map(c=>`<th>${dot(c[2])}${esc(c[1])}</th>`).join('')+`<th>Total</th></tr>`+P.map(k=>{const t=cats.reduce((a,c)=>a+(m[k+'|'+c[0]]||0),0);return `<tr><td>${esc(plabel(k,g,g!=='day')+(g==='day'?' '+MON[+k.slice(5,7)-1]:''))}</td>`+cats.map(c=>`<td>${m[k+'|'+c[0]]?n(m[k+'|'+c[0]]):'·'}</td>`).join('')+`<td><b>${n(t)}</b></td></tr>`}).join('')+`<tr class="tot"><td>Total</td>`+cats.map(c=>`<td>${n(tot(c[0]))}</td>`).join('')+`<td>${n(cats.reduce((a,c)=>a+tot(c[0]),0))}</td></tr>`;
+}
+function draw(){
+  const M=minfo(S.month),mg=gran('meta'),xg=S.gran;
+  const leadLast=LEADS.asOf&&LEADS.asOf.slice(0,7)===S.month?Math.min(M.dim,+LEADS.asOf.slice(8)):M.last;
+  seg($('g-month'),MKEYS.map(k=>[k,minfo(k).short]),S.month,v=>{S.month=v;S.sel=null;draw()});
+  seg($('g-gran'),[['day','Daily'],['week','Weekly'],['month','Monthly']],S.gran,v=>{S.gran=v;S.sel=null;draw()});
+  const P=periods(xg,Math.max(M.last,leadLast));
+  $('g-period').innerHTML=`<option value="">${S.gran==='month'?'All months shown':'Whole of '+esc(M.label)}</option>`+P.map(k=>`<option value="${k}" ${S.sel===k&&S.selG===xg?'selected':''}>${esc(plabel(k,xg,true))}</option>`).join('');
+  $('g-period').onchange=e=>{S.sel=e.target.value||null;S.selG=xg;draw()};
+  $('g-cat').innerHTML=[['ALL','All courses','']].concat(CATS.slice(0,8)).map(c=>`<button type="button" class="chip ${S.cat===c[0]?'on':''}" data-v="${c[0]}" aria-pressed="${S.cat===c[0]}">${c[2]?`<i style="background:${c[2]}"></i>`:''}${esc(c[1])}</button>`).join('');
+  $('g-cat').querySelectorAll('button').forEach(b=>b.onclick=()=>{S.cat=b.dataset.v;draw()});
+  const mr=metaRows(),xr=mxRows(),mc=byCat(mr),xc=byCat(xr);
+  const sub=selText()+(S.cat==='ALL'?'':' · '+CAT[S.cat].name);
+  $('tiles').innerHTML=tile('From Meta ads (Rootme Skills)',n(mc.t),esc(sub),'var(--c-ve)',IC.ads)+tile('In Metrix',n(xc.t),esc(sub),'var(--c-ai)',IC.crm);
+  const word={day:'each day',week:'each week',month:'each month'};
+  $('m-t').textContent='Leads from Meta ads '+word[mg]+' · Rootme Skills';
+  $('m-s').textContent=(mg!==S.gran?'Day-by-day ad numbers for '+M.name+' are not loaded, so this month is shown by week. ':'')+'Tap a bar to look at that period only.';
+  trend($('m-trend'),mr,mg,M.last,'var(--c-ve)');
+  $('m-cs').textContent=sub;hbars($('m-cat'),CATS.filter(c=>mc.m[c[0]]).map(c=>({label:c[1],color:c[2],value:mc.m[c[0]],sub:pct(mc.m[c[0]],mc.t)})));
+  table($('m-table'),mr,mg,M.last);
+  $('x-t').textContent='Leads in Metrix '+word[xg];
+  trend($('x-trend'),xr,xg,leadLast,'var(--c-ai)');
+  $('x-cs').textContent=sub;hbars($('x-cat'),CATS.filter(c=>xc.m[c[0]]).map(c=>({label:c[1],color:c[2],value:xc.m[c[0]],sub:pct(xc.m[c[0]],xc.t)})));
+  table($('x-table'),xr,xg,leadLast);
+  const fr=d=>d?dm(d)+' '+d.slice(0,4):'not loaded';$('fresh').textContent='Meta ads updated '+fr(MD.asOf)+' · Metrix leads updated to '+fr(LEADS.asOf);
+}
+const root=document.documentElement;
+function isDark(){const t=root.dataset.theme;return t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches}
+function paintTheme(){$('theme').innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${isDark()?IC.sun:IC.moon}</svg>`}
+try{const s=localStorage.getItem('rootme-theme');if(s)root.dataset.theme=s}catch(e){}
+$('theme').onclick=()=>{const t=isDark()?'light':'dark';root.dataset.theme=t;try{localStorage.setItem('rootme-theme',t)}catch(e){}paintTheme()};
+paintTheme();draw();
+let rz,lastW=innerWidth;addEventListener('resize',()=>{if(innerWidth===lastW)return;lastW=innerWidth;clearTimeout(rz);rz=setTimeout(draw,200)});
+</script>
+</body>
+</html>
