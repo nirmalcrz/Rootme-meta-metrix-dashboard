@@ -150,9 +150,26 @@ table.mx th .dot{border-radius:3px;margin-right:4px;width:7px;height:7px}
 tr:last-child td{border-bottom:0}
 tr.tot td{font-weight:800;border-top:1px solid var(--line2)}
 td.heat{border-radius:8px;font-weight:600}
+.blocks{display:grid;gap:12px}
+.blocks.b5{grid-template-columns:repeat(5,minmax(0,1fr))}.blocks.b5 .blk .v{font-size:19px}.blocks.b6{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}.blocks.b3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.blocks.b4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.blocks.bt{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.blk{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:14px 14px 12px;min-width:0;overflow:hidden}
+.blocks.b6 .blk{background:var(--card)}
+.blk .bar{position:absolute;left:0;top:14px;bottom:14px;width:4px;border-radius:0 4px 4px 0}
+.blk .l{font-size:12px;color:var(--muted);font-weight:600}
+.blk .v{font-size:21px;font-weight:800;letter-spacing:-.01em;margin-top:2px}
+.blk .v small{font-size:12px;font-weight:600;color:var(--muted)}
+.blk .h{font-size:11.5px;color:var(--faint);font-weight:500}
+.blk .h b{color:var(--ink)}
+.qmini{display:flex;height:8px;border-radius:4px;overflow:hidden;gap:2px;margin:8px 0 6px}
+.qmini i{display:block;min-width:2px}
+.sec .sechead{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:17px}
+.sec h3{font-size:12.5px;font-weight:700;color:var(--muted);margin:18px 0 10px}
+@media (max-width:820px){.blocks.b4{grid-template-columns:repeat(2,minmax(0,1fr))}.blocks.b5,.blocks.b6{grid-template-columns:repeat(2,minmax(0,1fr))}.blocks.bt{grid-template-columns:minmax(0,1fr)}}
 .tag{display:inline-flex;align-items:center;gap:6px;font-weight:600}
 .pill{display:inline-block;border-radius:999px;padding:2px 9px;font-size:11.5px;font-weight:700;background:var(--track);color:var(--muted)}
-.teamcards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.teamcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
 .tc{text-align:left;border:1px solid var(--line);background:var(--card);border-radius:20px;padding:16px;transition:all .3s;min-width:0}
 .tc:hover{transform:translateY(-2px);box-shadow:0 10px 24px -14px rgba(15,23,42,.25)}
 .tc.on{border-color:var(--ink)}
@@ -218,16 +235,9 @@ td.heat{border-radius:8px;font-weight:600}
 html,body{height:auto}
 .wrap{max-width:1160px;margin:0 auto;padding:28px 20px 60px}
 .brandline{display:flex;align-items:center;gap:8px;font-weight:800;font-size:14px;color:var(--muted);margin-bottom:6px}
-.tiles.four{grid-template-columns:repeat(4,minmax(0,1fr))}
-.tiles.four .val{font-size:26px}
-.cardhead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
-.cardhead .seg{margin-bottom:12px}
-.hb .gh b{margin-left:auto}
-.scroll.tall{max-height:330px;overflow:auto}
-.scroll.tall th{position:sticky;top:0;background:var(--card)}
-@media (max-width:1100px){.tiles.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:820px){.wrap{padding:16px 14px 40px}.headtools{width:100%;justify-content:space-between}.tiles.four .val{font-size:22px}}
-@media (max-width:480px){.tiles.four{grid-template-columns:minmax(0,1fr)}}
+.blocks.b3 .blk .v{font-size:28px}
+.blk .v small{margin-left:4px}
+@media (max-width:820px){.wrap{padding:16px 14px 40px}.headtools{width:100%;justify-content:space-between}.blocks.b3{grid-template-columns:minmax(0,1fr)}.blocks.b3 .blk .v{font-size:24px}}
 </style>
 </head>
 <body>
@@ -237,45 +247,29 @@ html,body{height:auto}
     <div class="headtools"><div class="seg" id="g-month"></div><button type="button" class="iconbtn" id="theme" aria-label="Switch between light and dark mode"></button></div>
   </div>
   <div class="controls" style="margin-bottom:20px">
-    <div class="ctl"><span>View by</span><div class="seg" id="g-gran"></div></div>
     <div class="ctl"><span>Showing</span><select id="g-period" aria-label="Period"></select></div>
-    <div class="ctl wide"><span>Course</span><div class="chips" id="g-cat"></div></div>
+    <div class="qkeys" style="margin:0" id="g-keys"></div>
   </div>
-  <div class="view on">
-    <div class="tiles four" id="tiles"></div>
-    <div class="card"><h2 id="m-t"></h2><p class="sub" id="m-s"></p><div id="m-trend"></div></div>
-    <div class="g2">
-      <div class="card"><h2>Meta ad leads by course</h2><p class="sub" id="m-cs"></p><div class="hb" id="m-cat"></div></div>
-      <div class="card"><h2>Meta ad leads table</h2><p class="sub">Count per period and course</p><div class="scroll tall"><table id="m-table" class="mx"></table></div></div>
-    </div>
-    <div class="card"><div class="cardhead"><div><h2 id="x-t"></h2><p class="sub">Leads created in Metrix, counted on the day they were created. Tap a bar to look at that period only.</p></div><div class="seg" id="x-grp"></div></div><div id="x-trend"></div></div>
-    <div class="g2">
-      <div class="card"><h2>Metrix leads by course</h2><p class="sub" id="x-cs"></p><div class="hb" id="x-cat"></div></div>
-      <div class="card"><h2 id="x-tt">Metrix leads table</h2><p class="sub">Count per period and course</p><div class="scroll tall"><table id="x-table" class="mx"></table></div></div>
-    </div>
-    <div class="card"><h2 id="o-t"></h2><p class="sub">Leads in Metrix whose source is organic (Instagram bio, inbox, story and comment, YouTube bio, website, referral, call, walk-in). Tap a bar to look at that period only.</p><div id="o-trend"></div></div>
-    <div class="g2">
-      <div class="card"><h2>Organic Rootme Skills by source</h2><p class="sub" id="o-ss"></p><div class="hb" id="o-src"></div></div>
-      <div class="card"><h2>Organic Rootme Skills by course</h2><p class="sub" id="o-cs"></p><div class="hb" id="o-cat"></div></div>
-    </div>
-    <div class="card"><h2>Organic Rootme Skills table</h2><p class="sub">Count per period and source</p><div class="scroll tall"><table id="o-table" class="mx"></table></div></div>
-    <div class="note"><b>How these are counted</b><ul>
-      <li>Meta ad leads are from the Rootme Skills ad account only. For each campaign, form leads and chat conversations are compared and the higher one is counted.</li>
-      <li>Metrix leads are every lead created in Metrix on that day, from any source. Rootme Skills means Video Editing, Contech Marketing, AI Web Development and Graphic Design, including their workshops. Other leads are English, other courses and leads with an empty Campaign field.</li>
-      <li>Organic Rootme Skills leads are Metrix leads from these sources: IG Bio RTM, IG Inbox RTM, IG Bio Faris Root, IG Inbox Faris Root, IG Story Faris Root, YT Bio Faris Root, YT Bio RTM, IG Comment Rootmedia, Website RTM, Referral, Call and Walk-In. They are already included in the Metrix counts above.</li>
-      <li>The Meta and Metrix counts will not match exactly: one ad chat is not always entered in Metrix, and Metrix also holds leads that did not come from ads.</li>
-      <li>Weeks here are fixed blocks of the month: 1–7, 8–14, 15–21, 22–28 and 29 to month end.</li>
-    </ul></div>
-  </div>
+  <div class="view on" id="body"></div>
+  <div class="note" style="margin-top:20px"><b>How these are counted</b><ul>
+    <li>Meta leads come from the Rootme Skills ad account. For each campaign, form leads and chat conversations are compared and the higher one is counted. The Rootme English ad account is not connected yet.</li>
+    <li>Metrix leads are leads in Metrix whose campaign is one of the Meta campaigns for that section. Organic leads are Metrix leads from the organic campaigns and sources for that section. A lead is counted once: if its campaign is a Meta campaign it is not counted as organic.</li>
+    <li>Good is Hot, Warm, Office Visit and Slot Booked. Bad is Unfit and Lost. No idea is every other status (New, Not Connected, Qualified, Cold, Online).</li>
+    <li>Workshop covers the Video Editing and AI workshops. "Not tagged" means the lead's campaign does not name a course.</li>
+    <li>Meta and Metrix counts will not match exactly: not every ad chat is entered in Metrix.</li>
+  </ul></div>
 </div>
 <div id="tip"></div>
+<script src="meta.js"></script>
 <script src="metadaily.js"></script>
 <script src="leads.js"></script>
 <script>
-const MD=window.METADAILY||{asOf:'',rows:[]},LEADS=window.LEADS||{asOf:'',cube:[]};
-const CATS=[['VE','Video Editing','var(--c-ve)'],['VEW','Video Editing Workshop','var(--c-vew)'],['CT','Contech Marketing','var(--c-ct)'],['AI','AI Web Development','var(--c-ai)'],['GD','Graphic Design','var(--c-gd)'],['AIW','AI Web Workshop','var(--c-aiw)'],['OT','Other courses','var(--c-ot)'],['UN','No campaign','var(--c-un)'],['NA','Not yet assigned','var(--c-un)']];
-const CAT=Object.fromEntries(CATS.map(c=>[c[0],{name:c[1],color:c[2]}]));
+const MD=window.METADAILY||{asOf:'',rows:[]},LEADS=window.LEADS||{asOf:'',cube:[]},META=window.META||{asOf:'',months:{}};
 const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],FULLM=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const COURSES=[['VE','Video Editing','var(--c-ve)',['VE']],['AI','AI Web Development','var(--c-ai)',['AI']],['CT','Contech','var(--c-ct)',['CT']],['GD','Graphic Design','var(--c-gd)',['GD']],['WS','Workshop','var(--c-vew)',['VEW','AIW']],['NT','Not tagged','var(--c-ot)',['OT','UN']]];
+const C2=Object.fromEntries(COURSES.flatMap(c=>c[3].map(k=>[k,c[0]])));
+const Q=[['won','Won','var(--g-won)',['Won']],['good','Good','var(--g-imp)',['Hot','Warm','Office Visit','Slot Booked']],['bad','Bad','var(--g-bad)',['Unfit','Lost']],['none','No idea','var(--g-oth)',null]];
+const QS={};Q.forEach(q=>(q[3]||[]).forEach(s=>QS[s]=q[0]));const qof=s=>QS[s]||'none';
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const n=v=>Math.round(v).toLocaleString('en-IN');
@@ -287,88 +281,68 @@ function showTip(e,html){tip.innerHTML=html;tip.style.display='block';const r=ti
 function hideTip(){tip.style.display='none'}
 function bindTips(root){root.querySelectorAll('[data-tip]').forEach(el=>{el.addEventListener('mousemove',e=>showTip(e,el.dataset.tip));el.addEventListener('mouseleave',hideTip)})}
 function seg(el,opts,cur,on){el.innerHTML=opts.map(o=>`<button type="button" class="${o[0]===cur?'on':''}" data-v="${o[0]}" aria-pressed="${o[0]===cur}">${esc(o[1])}</button>`).join('');el.querySelectorAll('button').forEach(b=>b.onclick=()=>on(b.dataset.v))}
-function hbars(el,items){const max=Math.max(1,...items.filter(i=>!i.head).map(i=>i.value||0));el.innerHTML=items.length?items.map(i=>i.head?`<div class="gh">${esc(i.head)}<b class="num">${i.right}</b></div>`:`<div class="r"><div class="l">${dot(i.color)}<span>${esc(i.label)}</span></div><div class="track"><div class="fill" style="width:${i.value/max*100}%;background:${i.color}"></div></div><div class="v num">${n(i.value)}<small>${esc(i.sub||'')}</small></div></div>`).join(''):'<div class="sub">No leads in this selection.</div>'}
-function tile(lab,val,hint,color,icon){return `<div class="card tile"><div class="ic" style="background:color-mix(in srgb,${color} 14%,transparent);color:${color}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${icon}</svg></div><div><div class="lab">${lab}</div><div class="val num">${val}</div><div class="hint">${hint}</div></div></div>`}
-const IC={ads:'<path d="M4 19V9M10 19V5M16 19v-7M21 19H3"/>',crm:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.4 3.2-5.5 6.5-5.5s5.9 2.1 6.5 5.5"/><path d="M16 4.8a3.5 3.5 0 0 1 0 6.400M18.500 14.800c1.700.800 2.700 2.600 3 5.200"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.900 4.900l1.400 1.400M17.700 17.700l1.400 1.400M2 12h2M20 12h2M4.900 19.100l1.400-1.400M17.700 6.300l1.400-1.400"/>',moon:'<path d="M20 14.500A8 8 0 0 1 9.500 4a8 8 0 1 0 10.500 10.500z"/>'};
+function blk(l,v,h,c){return `<div class="blk">${c?`<i class="bar" style="background:${c}"></i>`:''}<div class="l">${l}</div><div class="v num">${v}</div><div class="h">${h||''}</div></div>`}
+const IC={sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.900 4.900l1.400 1.400M17.700 17.700l1.400 1.400M2 12h2M20 12h2M4.900 19.100l1.400-1.400M17.700 6.300l1.400-1.400"/>',moon:'<path d="M20 14.500A8 8 0 0 1 9.500 4a8 8 0 1 0 10.500 10.500z"/>'};
 
-/* Meta rows -> counted value: per campaign and month, use whichever of form leads / chats is higher over the month */
-const MROWS=(()=>{const t={};MD.rows.forEach(r=>{const k=r[2]+'|'+r[0].slice(0,7);(t[k]=t[k]||[0,0]);t[k][0]+=r[4];t[k][1]+=r[5]});
-  return MD.rows.map(r=>{const m=t[r[2]+'|'+r[0].slice(0,7)];return {a:r[0],b:r[1],cat:r[3],v:m[0]>=m[1]?r[4]:r[5]}}).filter(r=>r.v)})();
-const MKEYS=[...new Set(MD.rows.map(r=>r[0].slice(0,7)))].sort().slice(-3);
-const DAILY=Object.fromEntries(MKEYS.map(k=>[k,MD.rows.some(r=>r[0].slice(0,7)===k&&r[0]===r[1])]));
-const SK=['VE','VEW','CT','AI','GD','AIW'];const isSK=c=>SK.includes(c);
-const S={month:MKEYS[MKEYS.length-1],gran:'day',sel:null,cat:'ALL',grp:'SK'};
-function minfo(k){const y=+k.slice(0,4),m=+k.slice(5,7),dim=new Date(y,m,0).getDate();const cur=MD.asOf.slice(0,7)===k,last=cur?Math.min(dim,+MD.asOf.slice(8)):dim;return {key:k,name:FULLM[m-1],dim,last,label:cur&&last<dim?`1–${last} ${FULLM[m-1]}`:FULLM[m-1],short:cur&&last<dim?`1–${last} ${FULLM[m-1].slice(0,3)}`:FULLM[m-1]}}
+const MKEYS=[...new Set(Object.keys(META.months).concat(MD.rows.map(r=>r[0].slice(0,7))))].sort().slice(-3);
+const asOf=META.asOf>MD.asOf?META.asOf:MD.asOf;
+const S={month:MKEYS[MKEYS.length-1],sel:null};
+function minfo(k){const y=+k.slice(0,4),m=+k.slice(5,7),dim=new Date(y,m,0).getDate();const cur=asOf.slice(0,7)===k,last=cur?Math.min(dim,+asOf.slice(8)):dim;return {key:k,name:FULLM[m-1],dim,last,label:cur&&last<dim?`1–${last} ${FULLM[m-1]}`:FULLM[m-1],short:cur&&last<dim?`1–${last} ${FULLM[m-1].slice(0,3)}`:FULLM[m-1]}}
 const dd=(k,i)=>k+'-'+String(i).padStart(2,'0');
-const wk=d=>{const i=+d.slice(8);const s=i>=29?29:Math.floor((i-1)/7)*7+1;return dd(d.slice(0,7),s)};
-function gran(src){return S.gran==='day'&&src==='meta'&&!DAILY[S.month]?'week':S.gran}
-function pkey(d,g){return g==='day'?d:g==='week'?wk(d):d.slice(0,7)}
-function periods(g,last){const M=minfo(S.month);if(g==='month')return MKEYS;const days=Array.from({length:last},(_,i)=>dd(S.month,i+1));return g==='day'?days:[...new Set(days.map(wk))]}
-function plabel(k,g,long){if(g==='month')return MON[+k.slice(5)-1]+(long?' '+k.slice(0,4):'');if(g==='day')return long?dm(k)+' '+k.slice(0,4):String(+k.slice(8));const M=minfo(k.slice(0,7)),s=+k.slice(8),e=Math.min(s>=29?M.dim:s+6,M.dim);return s+'–'+e+' '+MON[+k.slice(5,7)-1]}
-function inScope(d){return S.gran==='month'?MKEYS.includes(d.slice(0,7)):d.slice(0,7)===S.month}
-function selMatch(d,g){if(!S.sel)return true;if(S.selG==='month')return d.slice(0,7)===S.sel;if(S.selG==='week')return wk(d)===S.sel;return g==='day'?d===S.sel:wk(d)===wk(S.sel)&&false||d===S.sel}
-const metaRows=()=>MROWS.filter(r=>inScope(r.a)&&(S.cat==='ALL'||r.cat===S.cat)).map(r=>({d:r.a,cat:r.cat,v:r.v}));
-const mxAll=()=>LEADS.cube.filter(r=>inScope(r[0])&&(S.cat==='ALL'||r[1]===S.cat)).map(r=>({d:r[0],cat:r[1],v:r[4]}));
-const SRC=['IG Bio RTM','IG Inbox RTM','IG Bio Faris Root','IG Inbox Faris Root','IG Story Faris Root','YT Bio Faris Root','YT Bio RTM','IG Comment Rootmedia','Website RTM','Referral','Call','Walk-In'];
-const SCOL=['var(--c-ct)','var(--c-ve)','var(--c-vew)','var(--c-ai)','var(--c-aiw)','var(--c-gd)'];
-const orgRows=()=>(LEADS.organic||[]).filter(r=>inScope(r[0])&&(S.cat==='ALL'||r[2]===S.cat)).map(r=>({d:r[0],src:r[1],cat:r[2],v:r[3]}));
-const grpOk=c=>S.grp==='ALL'||(S.grp==='SK')===isSK(c);
-function niceMax(v){if(v<=4)return 4;const p=Math.pow(10,Math.floor(Math.log10(v)));const f=v/p;return (f<=1?1:f<=2?2:f<=4?4:f<=5?5:f<=8?8:10)*p}
-function selText(){const M=minfo(S.month);return S.sel?plabel(S.sel,S.selG,true):S.gran==='month'?'all months shown':M.label+' '+S.month.slice(0,4)}
-function trend(el,rows,g,last,color){
-  const P=periods(g,last),agg={};rows.forEach(r=>{const k=pkey(r.d,g);agg[k]=(agg[k]||0)+r.v});
-  const max=niceMax(Math.max(1,...P.map(k=>agg[k]||0))*1.1),w=Math.max(200,(el.clientWidth||600)-38)/P.length,showVal=w>=30,step=g==='day'?Math.max(1,Math.ceil(17/w)):1;
-  let h=`<div class="plot">`;[1,.5].forEach(f=>h+=`<div class="grid" style="bottom:${f*100}%"><span>${n(max*f)}</span></div>`);
-  h+=`<div class="cols">`+P.map(k=>{const v=agg[k]||0,on=S.sel===k&&S.selG===g;return `<div class="col ${on?'sel':''} ${S.sel&&!on?'dim':''}" data-k="${k}" data-tip="${esc(`<b>${esc(plabel(k,g,true))}</b>${n(v)} leads`)}" role="button" tabindex="0" aria-label="${esc(plabel(k,g,true))}: ${v} leads">${showVal?`<span class="lbl num">${n(v)}</span>`:''}<div class="bar" style="height:${v/max*100}%;background:${color}"></div></div>`}).join('')+`</div></div>`;
-  h+=`<div class="xl">`+P.map((k,i)=>`<span>${i%step===0?esc(plabel(k,g)):''}</span>`).join('')+`</div>`;
-  el.innerHTML=h;bindTips(el);
-  el.querySelectorAll('.col').forEach(c=>{const go=()=>{const same=S.sel===c.dataset.k&&S.selG===g;S.sel=same?null:c.dataset.k;S.selG=g;hideTip();draw()};c.onclick=go;c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}});
-  return {P,agg};
+const wk=d=>{const i=+d.slice(8);return dd(d.slice(0,7),i>=29?29:Math.floor((i-1)/7)*7+1)};
+function wlabel(k){const M=minfo(k.slice(0,7)),s=+k.slice(8),e=Math.min(s>=29?M.dim:s+6,M.last);return (s===e?s:s+'–'+e)+' '+MON[+k.slice(5,7)-1]}
+function inSel(d){if(d.slice(0,7)!==S.month)return false;if(!S.sel)return true;return S.sel.t==='d'?d===S.sel.k:wk(d)===S.sel.k}
+function selText(){const M=minfo(S.month);return !S.sel?M.label+' '+S.month.slice(0,4):S.sel.t==='d'?dm(S.sel.k)+' '+S.month.slice(0,4):wlabel(S.sel.k)+' '+S.month.slice(0,4)}
+
+/* Meta leads, Rootme Skills ad account */
+const MDM=(()=>{const t={};MD.rows.forEach(r=>{const k=r[2]+'|'+r[0].slice(0,7);(t[k]=t[k]||[0,0]);t[k][0]+=r[4];t[k][1]+=r[5]});return MD.rows.map(r=>{const m=t[r[2]+'|'+r[0].slice(0,7)];return {a:r[0],b:r[1],v:m[0]>=m[1]?r[4]:r[5]}})})();
+function metaSkills(){
+  const mon=(META.months[S.month]||[]).filter(c=>c.acc==='Rootme Skills');
+  if(!S.sel)return mon.length?{v:mon.reduce((a,c)=>a+Math.max(c.lead,c.conv),0),h:'Rootme Skills ad account'}:{v:null,h:'no ad data for this month'};
+  const rows=MDM.filter(r=>r.a.slice(0,7)===S.month),daily=rows.some(r=>r.a===r.b);
+  if(S.sel.t==='d'){if(!daily)return {v:null,h:'this month has ad leads by week only'};return {v:rows.filter(r=>r.a===S.sel.k).reduce((a,r)=>a+r.v,0),h:'Rootme Skills ad account'}}
+  return {v:rows.filter(r=>wk(r.a)===S.sel.k).reduce((a,r)=>a+r.v,0),h:'Rootme Skills ad account'};
 }
-function inSel(d){if(!S.sel)return true;return pkey(d,S.selG)===S.sel}
-function byCat(rows){const m={};rows.filter(r=>inSel(r.d)).forEach(r=>m[r.cat]=(m[r.cat]||0)+r.v);const t=Object.values(m).reduce((a,b)=>a+b,0);return {m,t}}
-function table(el,rows,g,last,cols,key){
-  key=key||'cat';const P=periods(g,last),cats=(cols||CATS).filter(c=>rows.some(r=>r[key]===c[0])),m={};rows.forEach(r=>{const k=pkey(r.d,g)+'|'+r[key];m[k]=(m[k]||0)+r.v});
-  const tot=c=>P.reduce((a,k)=>a+(m[k+'|'+c]||0),0);
-  el.innerHTML=`<tr><th>${g==='day'?'Day':g==='week'?'Week':'Month'}</th>`+cats.map(c=>`<th>${dot(c[2])}${esc(c[1])}</th>`).join('')+`<th>Total</th></tr>`+P.map(k=>{const t=cats.reduce((a,c)=>a+(m[k+'|'+c[0]]||0),0);return `<tr><td>${esc(plabel(k,g,g!=='day')+(g==='day'?' '+MON[+k.slice(5,7)-1]:''))}</td>`+cats.map(c=>`<td>${m[k+'|'+c[0]]?n(m[k+'|'+c[0]]):'·'}</td>`).join('')+`<td><b>${n(t)}</b></td></tr>`}).join('')+`<tr class="tot"><td>Total</td>`+cats.map(c=>`<td>${n(tot(c[0]))}</td>`).join('')+`<td>${n(cats.reduce((a,c)=>a+tot(c[0]),0))}</td></tr>`;
+const leadLast=()=>{const M=minfo(S.month);return LEADS.asOf&&LEADS.asOf.slice(0,7)===S.month?Math.min(M.dim,+LEADS.asOf.slice(8)):M.dim};
+function qcount(rows){const o={t:0,won:0,good:0,bad:0,none:0};rows.forEach(r=>{o.t+=r[4];o[qof(r[2])]+=r[4]});return o}
+function qbar(c){return `<div class="qbar" role="img" aria-label="${Q.map(q=>q[1]+' '+pct(c[q[0]],c.t)).join(', ')}">${Q.map(q=>c[q[0]]?`<i style="flex:${c[q[0]]};background:${q[2]}">${c[q[0]]/c.t>=.09?pct(c[q[0]],c.t):''}</i>`:'').join('')}</div>`}
+function niceMax(v){if(v<=4)return 4;const p=Math.pow(10,Math.floor(Math.log10(v)));const f=v/p;return (f<=1?1:f<=2?2:f<=4?4:f<=5?5:f<=8?8:10)*p}
+function trend(id,rows,color){
+  const el=$(id),P=Array.from({length:leadLast()},(_,i)=>dd(S.month,i+1)),agg={};rows.forEach(r=>agg[r[0]]=(agg[r[0]]||0)+r[4]);
+  const max=niceMax(Math.max(1,...P.map(k=>agg[k]||0))*1.1),w=Math.max(200,(el.clientWidth||600)-38)/P.length,showVal=w>=30,step=Math.max(1,Math.ceil(17/w));
+  let h=`<div class="plot" style="height:170px">`;[1,.5].forEach(f=>h+=`<div class="grid" style="bottom:${f*100}%"><span>${n(max*f)}</span></div>`);
+  const on=k=>S.sel&&(S.sel.t==='d'?S.sel.k===k:wk(k)===S.sel.k);
+  h+=`<div class="cols">`+P.map(k=>{const v=agg[k]||0;return `<div class="col ${on(k)?'sel':''} ${S.sel&&!on(k)?'dim':''}" data-k="${k}" data-tip="${esc(`<b>${dm(k)}</b>${n(v)} leads`)}" role="button" tabindex="0" aria-label="${dm(k)}: ${v} leads">${showVal?`<span class="lbl num">${n(v)}</span>`:''}<div class="bar" style="height:${v/max*100}%;background:${color}"></div></div>`}).join('')+`</div></div><div class="xl">`+P.map((k,i)=>`<span>${i%step===0?+k.slice(8):''}</span>`).join('')+`</div>`;
+  el.innerHTML=h;bindTips(el);
+  el.querySelectorAll('.col').forEach(c=>{const go=()=>{S.sel=S.sel&&S.sel.t==='d'&&S.sel.k===c.dataset.k?null:{t:'d',k:c.dataset.k};hideTip();draw()};c.onclick=go;c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}}});
+}
+function section(o){
+  const all=o.m.concat(o.o),q=qcount(all),sum=R=>R.reduce((a,r)=>a+r[4],0);
+  let h=`<div class="card sec"><div class="sechead"><span class="tag">${dot(o.color)}<b>${o.name}</b></span><span class="pill">${esc(selText())}</span></div><p class="sub">${o.note}</p>
+   <div class="blocks b3">${blk('Meta leads',o.meta.v==null?'–':n(o.meta.v),o.meta.h,'var(--c-ve)')}${blk('Metrix leads',n(sum(o.m)),'from Meta campaigns','var(--c-ai)')}${blk('Organic leads',n(sum(o.o)),'in Metrix','var(--c-ct)')}</div>
+   <h3>${o.name} leads in Metrix each day · tap a bar to see one day</h3><div id="${o.id}-trend"></div>`;
+  if(o.courses){
+    const by={};all.forEach(r=>{const k=C2[r[1]]||'NT';(by[k]=by[k]||[]).push(r)});
+    const cs=COURSES.filter(c=>by[c[0]]);
+    h+=`<h3>Where the ${n(q.t)} Metrix leads went, by course</h3><div class="blocks b6">${cs.map(c=>blk(`<span class="tag">${dot(c[2])}${c[1]}</span>`,`${n(sum(by[c[0]]))} <small>${pct(sum(by[c[0]]),q.t)}</small>`,'')).join('')||'<div class="sub">No leads in this period.</div>'}</div>
+     <h3>How the leads stand in each course</h3><div class="qb">${cs.map(c=>{const k=qcount(by[c[0]]);return `<div class="q"><div class="top"><span class="l">${dot(c[2])}${c[1]}</span><small><b class="num">${n(k.t)}</b> leads · ${Q.map(x=>`${x[1]} <b class="num">${n(k[x[0]])}</b>`).join(' · ')}</small></div>${qbar(k)}</div>`}).join('')}</div>`;
+  }
+  h+=`<h3>How ${o.courses?'all':'the'} ${n(q.t)} ${o.name} leads stand</h3><div class="blocks b4">${Q.map(x=>blk(x[1],`${n(q[x[0]])} <small>${pct(q[x[0]],q.t)}</small>`,x[3]?x[3].join(', '):'every other status',x[2])).join('')}</div></div>`;
+  return h;
 }
 function draw(){
-  const M=minfo(S.month),mg=gran('meta'),xg=S.gran;
-  const leadLast=LEADS.asOf&&LEADS.asOf.slice(0,7)===S.month?Math.min(M.dim,+LEADS.asOf.slice(8)):M.last;
+  const M=minfo(S.month);
   seg($('g-month'),MKEYS.map(k=>[k,minfo(k).short]),S.month,v=>{S.month=v;S.sel=null;draw()});
-  seg($('g-gran'),[['day','Daily'],['week','Weekly'],['month','Monthly']],S.gran,v=>{S.gran=v;S.sel=null;draw()});
-  const P=periods(xg,Math.max(M.last,leadLast));
-  $('g-period').innerHTML=`<option value="">${S.gran==='month'?'All months shown':'Whole of '+esc(M.label)}</option>`+P.map(k=>`<option value="${k}" ${S.sel===k&&S.selG===xg?'selected':''}>${esc(plabel(k,xg,true))}</option>`).join('');
-  $('g-period').onchange=e=>{S.sel=e.target.value||null;S.selG=xg;draw()};
-  $('g-cat').innerHTML=[['ALL','All courses','']].concat(CATS.slice(0,8)).map(c=>`<button type="button" class="chip ${S.cat===c[0]?'on':''}" data-v="${c[0]}" aria-pressed="${S.cat===c[0]}">${c[2]?`<i style="background:${c[2]}"></i>`:''}${esc(c[1])}</button>`).join('');
-  $('g-cat').querySelectorAll('button').forEach(b=>b.onclick=()=>{S.cat=b.dataset.v;draw()});
-  const mr=metaRows(),xa=mxAll(),xr=xa.filter(r=>grpOk(r.cat)),mc=byCat(mr),xc=byCat(xa);
-  const skT=SK.reduce((a,c)=>a+(xc.m[c]||0),0),otT=xc.t-skT;
-  seg($('x-grp'),[['SK','Rootme Skills'],['OT','Other leads'],['ALL','All']],S.grp,v=>{S.grp=v;draw()});
-  const sub=selText()+(S.cat==='ALL'?'':' · '+CAT[S.cat].name);
-  $('tiles').innerHTML=tile('From Meta ads (Rootme Skills)',n(mc.t),esc(sub),'var(--c-ve)',IC.ads)+tile('In Metrix · Rootme Skills',n(skT),esc(sub),'var(--c-ai)',IC.crm)+tile('In Metrix · other leads',n(otT),'English, other courses, no campaign','var(--c-ot)',IC.crm);
-  const word={day:'each day',week:'each week',month:'each month'};
-  $('m-t').textContent='Leads from Meta ads '+word[mg]+' · Rootme Skills';
-  $('m-s').textContent=(mg!==S.gran?'Day-by-day ad numbers for '+M.name+' are not loaded, so this month is shown by week. ':'')+'Tap a bar to look at that period only.';
-  trend($('m-trend'),mr,mg,M.last,'var(--c-ve)');
-  $('m-cs').textContent=sub;hbars($('m-cat'),CATS.filter(c=>mc.m[c[0]]).map(c=>({label:c[1],color:c[2],value:mc.m[c[0]],sub:pct(mc.m[c[0]],mc.t)})));
-  table($('m-table'),mr,mg,M.last);
-  const gname={SK:'Rootme Skills leads',OT:'Other leads',ALL:'All leads'}[S.grp];
-  $('x-t').textContent=gname+' in Metrix '+word[xg];
-  trend($('x-trend'),xr,xg,leadLast,S.grp==='OT'?'var(--c-ot)':'var(--c-ai)');
-  $('x-cs').textContent=sub;const row=c=>({label:c[1],color:c[2],value:xc.m[c[0]],sub:pct(xc.m[c[0]],xc.t)});
-  hbars($('x-cat'),(skT?[{head:'Rootme Skills',right:n(skT)+' · '+pct(skT,xc.t)}]:[]).concat(CATS.filter(c=>isSK(c[0])&&xc.m[c[0]]).map(row),otT?[{head:'Other leads',right:n(otT)+' · '+pct(otT,xc.t)}]:[],CATS.filter(c=>!isSK(c[0])&&xc.m[c[0]]).map(row)));
-  $('x-tt').textContent='Metrix table · '+gname;
-  table($('x-table'),xr,xg,leadLast);
-  const or=orgRows(),os={},oc=byCat(or);or.filter(r=>inSel(r.d)).forEach(r=>os[r.src]=(os[r.src]||0)+r.v);
-  const srcs=SRC.filter(s=>or.some(r=>r.src===s)).sort((a,b)=>(os[b]||0)-(os[a]||0)),scol=Object.fromEntries(srcs.map((s,i)=>[s,i<5?SCOL[i]:'var(--c-ot)']));
-  $('tiles').insertAdjacentHTML('beforeend',tile('Organic Rootme Skills',n(oc.t),esc(sub),'var(--c-ct)',IC.crm));
-  $('o-t').textContent='Organic Rootme Skills leads '+word[xg];
-  trend($('o-trend'),or,xg,leadLast,'var(--c-ct)');
-  $('o-ss').textContent=sub;hbars($('o-src'),srcs.filter(s=>os[s]).map(s=>({label:s,color:scol[s],value:os[s],sub:pct(os[s],oc.t)})));
-  $('o-cs').textContent=sub;hbars($('o-cat'),CATS.filter(c=>oc.m[c[0]]).map(c=>({label:c[1],color:c[2],value:oc.m[c[0]],sub:pct(oc.m[c[0]],oc.t)})));
-  table($('o-table'),or,xg,leadLast,srcs.map(s=>[s,s,scol[s]]),'src');
-  const fr=d=>d?dm(d)+' '+d.slice(0,4):'not loaded';$('fresh').textContent='Meta ads updated '+fr(MD.asOf)+' · Metrix leads updated to '+fr(LEADS.asOf);
+  const days=Array.from({length:leadLast()},(_,i)=>dd(S.month,i+1)),weeks=[...new Set(days.map(wk))];
+  const cur=S.sel?S.sel.t+':'+S.sel.k:'';
+  $('g-period').innerHTML=`<option value="">Whole of ${esc(M.label)}</option><optgroup label="Weeks">${weeks.map(k=>`<option value="w:${k}" ${cur==='w:'+k?'selected':''}>${esc(wlabel(k))}</option>`).join('')}</optgroup><optgroup label="Days">${days.map(k=>`<option value="d:${k}" ${cur==='d:'+k?'selected':''}>${esc(dm(k))}</option>`).join('')}</optgroup>`;
+  $('g-period').onchange=e=>{const v=e.target.value;S.sel=v?{t:v[0],k:v.slice(2)}:null;draw()};
+  $('g-keys').innerHTML=Q.map(q=>`<span><i class="dot" style="background:${q[2]}"></i>${q[1]}</span>`).join('');
+  const mon=LEADS.cube.filter(r=>r[0].slice(0,7)===S.month),rows=mon.filter(r=>inSel(r[0])),f=(R,k)=>R.filter(r=>r[5]===k);
+  $('body').innerHTML=section({id:'sk',name:'Rootme Skills',color:'var(--c-ve)',note:'Video Editing, AI Web Development, Contech, Graphic Design and the workshops.',meta:metaSkills(),m:f(rows,'SM'),o:f(rows,'SO'),courses:true})
+    +section({id:'en',name:'Rootme English',color:'var(--c-vew)',note:'English courses.',meta:{v:null,h:'English ad account not connected'},m:f(rows,'EM'),o:f(rows,'EO')});
+  trend('sk-trend',mon.filter(r=>r[5]==='SM'||r[5]==='SO'),'var(--c-ve)');trend('en-trend',mon.filter(r=>r[5]==='EM'||r[5]==='EO'),'var(--c-vew)');
+  const fr=d=>d?dm(d)+' '+d.slice(0,4):'not loaded';$('fresh').textContent='Meta ads updated '+fr(asOf)+' · Metrix leads updated to '+fr(LEADS.asOf);
 }
 const root=document.documentElement;
 function isDark(){const t=root.dataset.theme;return t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches}

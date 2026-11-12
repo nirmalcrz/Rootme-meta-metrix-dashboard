@@ -149,6 +149,23 @@ table.mx th .dot{border-radius:3px;margin-right:4px;width:7px;height:7px}
 tr:last-child td{border-bottom:0}
 tr.tot td{font-weight:800;border-top:1px solid var(--line2)}
 td.heat{border-radius:8px;font-weight:600}
+.blocks{display:grid;gap:12px}
+.blocks.b5{grid-template-columns:repeat(5,minmax(0,1fr))}.blocks.b5 .blk .v{font-size:19px}.blocks.b6{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}.blocks.b3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.blocks.b4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.blocks.bt{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.blk{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:14px 14px 12px;min-width:0;overflow:hidden}
+.blocks.b6 .blk{background:var(--card)}
+.blk .bar{position:absolute;left:0;top:14px;bottom:14px;width:4px;border-radius:0 4px 4px 0}
+.blk .l{font-size:12px;color:var(--muted);font-weight:600}
+.blk .v{font-size:21px;font-weight:800;letter-spacing:-.01em;margin-top:2px}
+.blk .v small{font-size:12px;font-weight:600;color:var(--muted)}
+.blk .h{font-size:11.5px;color:var(--faint);font-weight:500}
+.blk .h b{color:var(--ink)}
+.qmini{display:flex;height:8px;border-radius:4px;overflow:hidden;gap:2px;margin:8px 0 6px}
+.qmini i{display:block;min-width:2px}
+.sec .sechead{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:17px}
+.sec h3{font-size:12.5px;font-weight:700;color:var(--muted);margin:18px 0 10px}
+@media (max-width:820px){.blocks.b4{grid-template-columns:repeat(2,minmax(0,1fr))}.blocks.b5,.blocks.b6{grid-template-columns:repeat(2,minmax(0,1fr))}.blocks.bt{grid-template-columns:minmax(0,1fr)}}
 .tag{display:inline-flex;align-items:center;gap:6px;font-weight:600}
 .pill{display:inline-block;border-radius:999px;padding:2px 9px;font-size:11.5px;font-weight:700;background:var(--track);color:var(--muted)}
 .teamcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
@@ -230,18 +247,22 @@ td.heat{border-radius:8px;font-weight:600}
       <div class="headtools"><div class="seg" id="g-month"></div><button type="button" class="iconbtn" id="theme" aria-label="Switch between light and dark mode"></button></div>
     </div>
 
+    <section class="view" id="v-overview"><div id="o-body" class="stackc"></div></section>
+
     <section class="view" id="v-meta">
-      <div class="controls"><div class="ctl"><span>Ad account</span><div class="seg" id="m-acc"></div></div></div>
-      <div class="tiles" id="m-tiles"></div>
-      <div class="g2">
+      <div class="controls"><div class="ctl"><span>Section</span><div class="seg" id="m-acc"></div></div></div>
+      <div class="card" id="m-note" style="display:none;color:var(--muted);font-weight:500"></div>
+      <div class="tiles adsonly" id="m-tiles"></div>
+      <div class="blocks b6 adsonly" id="m-tiles2"></div>
+      <div class="g2 adsonly">
         <div class="card"><h2>Where the ad money went</h2><p class="sub">Spend without GST, by course</p><div class="donutwrap"><svg id="m-donut" viewBox="0 0 200 200" role="img" aria-label="Spend share by course"></svg><div class="legend" id="m-legend"></div></div></div>
         <div class="stackc">
           <div class="card"><h2>Leads from ads</h2><p class="sub">Per campaign, the higher of form leads and chat conversations</p><div class="hb" id="m-leads"></div></div>
           <div class="card"><h2>Cost per result</h2><p class="sub">Spend without GST ÷ leads. Lower is better.</p><div class="hb" id="m-cpr"></div></div>
         </div>
       </div>
-      <div class="card"><h2>By course</h2><p class="sub">Spend, leads and cost per result</p><div class="scroll"><table id="m-cat"></table></div></div>
-      <div class="card"><h2>Campaigns</h2><p class="sub">Every campaign that spent in this period, with the course it is counted under</p><div class="scroll"><table id="m-camp"></table></div></div>
+      <div class="card adsonly"><h2>By course</h2><p class="sub">Spend, leads and cost per result</p><div class="scroll"><table id="m-cat"></table></div></div>
+      <div class="card adsonly"><h2>Campaigns</h2><p class="sub">Every campaign that spent in this period, with the course it is counted under</p><div class="scroll"><table id="m-camp"></table></div></div>
     </section>
 
     <section class="view" id="v-metrix">
@@ -261,7 +282,7 @@ td.heat{border-radius:8px;font-weight:600}
       <div class="teamcards" id="t-cards"></div>
       <div class="g2">
         <div class="card"><h2>Leads handled by each team</h2><p class="sub" id="t-share-s"></p><div class="hb" id="t-share"></div></div>
-        <div class="card"><h2>Important leads by team</h2><p class="sub">Hot, Warm, Slot Booked and Office Visit, as a share of the team's leads</p><div class="hb" id="t-imp"></div></div>
+        <div class="card"><h2>Good leads by team</h2><p class="sub">Hot, Warm, Slot Booked and Office Visit, as a share of the team's leads</p><div class="hb" id="t-imp"></div></div>
       </div>
       <div class="card"><h2>How each team's leads stand</h2><p class="sub" id="t-q-s"></p><div id="t-quality"></div></div>
       <div class="card"><h2 id="t-one-t"></h2><p class="sub">Tap a team card above to see one team</p><div class="hb" id="t-one"></div></div>
@@ -278,7 +299,7 @@ td.heat{border-radius:8px;font-weight:600}
       <li>GST is added at 18% on top of the spend Meta reports.</li>
       <li>Ad leads: for each campaign, form leads and chat conversations are compared and the higher one is counted.</li>
       <li>Cost per result uses spend without GST.</li>
-      <li>Important leads are Hot, Warm, Slot Booked and Office Visit. Worst are Lost and Unfit.</li>
+      <li>Good leads are Hot, Warm, Slot Booked and Office Visit. Bad leads are Lost and Unfit. No idea is every other status.</li>
       <li>Lead status is the status on the day the sheet was exported, not on the day the lead came in.</li>
     </ul></div>
   </aside>
@@ -290,7 +311,7 @@ td.heat{border-radius:8px;font-weight:600}
 const MODE='shared';const META=window.META||{asOf:'2026-01-01',months:{}};const LEADS=window.LEADS||{cube:[],asOf:''};const REVIEW={un:[],camp:[]};const D={cube:LEADS.cube,un:REVIEW.un,camp:REVIEW.camp};
 const CATS=[['VE','Video Editing','var(--c-ve)'],['VEW','Video Editing Workshop','var(--c-vew)'],['CT','Contech Marketing','var(--c-ct)'],['AI','AI Web Development','var(--c-ai)'],['GD','Graphic Design','var(--c-gd)'],['AIW','AI Web Workshop','var(--c-aiw)'],['OT','Other courses','var(--c-ot)'],['UN','No campaign','var(--c-un)']];
 const CAT=Object.fromEntries(CATS.map(c=>[c[0],{name:c[1],color:c[2]}]));CAT.NA={name:'Not yet assigned',color:'var(--c-un)'};
-const GROUPS=[['imp','Important',['Hot','Warm','Slot Booked','Office Visit']],['won','Won',['Won']],['oth','Other',['New','Not Connected','Qualified','Cold','Online']],['bad','Worst',['Lost','Unfit']]];
+const GROUPS=[['imp','Good',['Hot','Warm','Slot Booked','Office Visit']],['won','Won',['Won']],['oth','No idea',['New','Not Connected','Qualified','Cold','Online']],['bad','Bad',['Lost','Unfit']]];
 const SG={};GROUPS.forEach(g=>g[2].forEach(s=>SG[s]=g[0]));
 const STATUSES=GROUPS.flatMap(g=>g[2]);
 const gcol=g=>`var(--g-${g})`;
@@ -324,12 +345,24 @@ function tile(lab,val,hint,color,icon){return `<div class="card tile"><div class
 const IC={money:'<rect x="3" y="6" width="18" height="12" rx="3"/><circle cx="12" cy="12" r="2.5"/>',tax:'<path d="M7 17 17 7"/><circle cx="8" cy="8" r="2"/><circle cx="16" cy="16" r="2"/>',users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.500 20c.600-3.400 3.200-5.500 6.500-5.500s5.900 2.100 6.500 5.500"/><path d="M16 4.800a3.500 3.500 0 0 1 0 6.400M18.500 14.800c1.700.800 2.700 2.600 3 5.200"/>',target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',flame:'<path d="M12 3c1 3 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-6 1-9z"/>',check:'<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>',x:'<circle cx="12" cy="12" r="9"/><path d="m9 9 6 6M15 9l-6 6"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.900 4.900l1.400 1.400M17.700 17.700l1.400 1.400M2 12h2M20 12h2M4.900 19.100l1.400-1.400M17.700 6.300l1.400-1.400"/>',moon:'<path d="M20 14.500A8 8 0 0 1 9.500 4a8 8 0 1 0 10.500 10.500z"/>'};
 
 /* ---------- META ---------- */
-const MS={acc:'all'};
-function metaRows(month,acc){return (META.months[month]||[]).filter(c=>acc==='all'||c.acc===acc).map(c=>({...c,res:Math.max(c.lead,c.conv)}))}
+const SECS=[
+ {k:'SK',name:'Rootme Skills',color:'var(--c-ve)',meta:c=>c.acc==='Rootme Skills',m:r=>r[5]==='SM',o:r=>r[5]==='SO',note:'Rootme Skills ad account, with Metrix leads split into Meta and organic by your campaign and source lists.'},
+ {k:'CT',name:'Rootme Contech',color:'var(--c-ct)',meta:c=>c.acc==='Rootme ConTech'||c.cat==='CT',m:r=>r[5]==='SM'&&r[1]==='CT',o:r=>r[5]==='SO'&&r[1]==='CT',note:'The Rootme ConTech ad account plus Contech campaigns now running in Rootme Skills, and Contech leads in Metrix. These are also counted inside Rootme Skills.'},
+ {k:'EN',name:'Rootme English',color:'var(--c-vew)',meta:c=>c.acc==='Rootme English',m:r=>r[5]==='EM',o:r=>r[5]==='EO',noAds:true,note:'English leads in Metrix. The English ad account is not connected yet, so ad spend and ad leads are not shown.'}];
+const SEC=Object.fromEntries(SECS.map(s=>[s.k,s]));
+const MS={sec:'SK'};
+function metaRows(month,sec){return (META.months[month]||[]).filter(c=>sec==='ALL'||SEC[sec].meta(c)).map(c=>({...c,res:Math.max(c.lead,c.conv)}))}
+const p2=v=>isFinite(v)?v.toFixed(2)+'%':'–',p1=v=>isFinite(v)?v.toFixed(1)+'%':'–',r2=v=>isFinite(v)?'₹'+v.toFixed(2):'–',f2=v=>isFinite(v)?v.toFixed(2):'–';
+function adM(R){const s=k=>R.reduce((a,c)=>a+(c[k]||0),0),sp=s('spend'),im=s('imp'),lc=s('lc'),v3=s('v3'),tp=s('tp'),rc=s('reach');return {ctr:lc/im*100,cpm:sp/im*1000,cpc:sp/lc,freq:im/rc,hook:v3/im*100,hold:tp/v3*100,im}}
+function blk(l,v,h,c){return `<div class="blk">${c?`<i class="bar" style="background:${c}"></i>`:''}<div class="l">${l}</div><div class="v num">${v}</div><div class="h">${h||''}</div></div>`}
 function metaByCat(rows){const m={};rows.forEach(c=>{const o=m[c.cat]||(m[c.cat]={spend:0,lead:0,conv:0,res:0});o.spend+=c.spend;o.lead+=c.lead;o.conv+=c.conv;o.res+=c.res});return CATS.concat([['NA']]).filter(c=>m[c[0]]).map(c=>({key:c[0],...CAT[c[0]],...m[c[0]]}))}
 function renderMeta(){
-  seg($('m-acc'),[['all','Both'],['Rootme Skills','Skills'],['Rootme ConTech','ConTech']],MS.acc,v=>{MS.acc=v;renderMeta()});
-  const rows=metaRows(G.month,MS.acc),cats=metaByCat(rows);
+  seg($('m-acc'),SECS.map(s=>[s.k,s.name]).concat([['ALL','All']]),MS.sec,v=>{MS.sec=v;renderMeta()});
+  const rows=metaRows(G.month,MS.sec),cats=metaByCat(rows);
+  const noAds=MS.sec==='EN';$('m-note').style.display=noAds?'':'none';$('m-note').textContent=noAds?'The Rootme English ad account is not connected to this dashboard yet, so there is no spend or ad data to show here. English leads from Metrix are in the Overview and Metrix sections.':'';
+  document.querySelectorAll('#v-meta .adsonly').forEach(e=>e.style.display=noAds?'none':'');
+  const am=adM(rows);
+  $('m-tiles2').innerHTML=rows.length?blk('CTR (link)',p2(am.ctr),'link clicks ÷ impressions')+blk('CPM',r2(am.cpm),'cost per 1,000 impressions')+blk('CPC (link)',r2(am.cpc),'cost per link click')+blk('Frequency',f2(am.freq),'impressions ÷ reach, approximate')+blk('Hook rate',p1(am.hook),'3-second plays ÷ impressions')+blk('Hold rate',p1(am.hold),'ThruPlays ÷ 3-second plays'):'';
   const sp=rows.reduce((a,c)=>a+c.spend,0),res=rows.reduce((a,c)=>a+c.res,0);
   $('m-tiles').innerHTML=tile('Spend without GST',rs(sp),rows.length+' campaigns','var(--c-ve)',IC.money)+tile('Spend with GST',rs(sp*(1+GST)),'GST 18% = '+rs(sp*GST),'var(--c-vew)',IC.tax)+tile('Leads from ads',n(res),'forms or chats','var(--c-ct)',IC.users)+tile('Cost per result',res?rs1(sp/res):'–',res?'with GST '+rs1(sp*(1+GST)/res):'no leads here','var(--c-ai)',IC.target);
   const R=78,W=26,C=2*Math.PI*R;let off=0,svg='';
@@ -341,13 +374,31 @@ function renderMeta(){
   hbars($('m-leads'),[...cats].sort((a,b)=>b.res-a.res).map(c=>({label:c.name,color:c.color,value:c.res,tip:`${n(c.res)} counted · ${n(c.lead)} form leads · ${n(c.conv)} chats`})),n);
   hbars($('m-cpr'),cats.filter(c=>c.res).sort((a,b)=>a.spend/a.res-b.spend/b.res).map(c=>({label:c.name,color:c.color,value:c.spend/c.res,tip:`${rs1(c.spend/c.res)} per lead · ${rs(c.spend)} for ${n(c.res)} leads`})),rs1);
   $('m-cat').innerHTML=`<tr><th>Course</th><th>Spend</th><th>With GST</th><th>Form leads</th><th>Chats</th><th>Leads counted</th><th>Cost per result</th></tr>`+cats.map(c=>`<tr><td><span class="tag">${dot(c.color)}${esc(c.name)}</span></td><td>${rs(c.spend)}</td><td>${rs(c.spend*(1+GST))}</td><td>${n(c.lead)}</td><td>${n(c.conv)}</td><td><b>${n(c.res)}</b></td><td>${c.res?rs1(c.spend/c.res):'–'}</td></tr>`).join('')+`<tr class="tot"><td>Total</td><td>${rs(sp)}</td><td>${rs(sp*(1+GST))}</td><td>${n(rows.reduce((a,c)=>a+c.lead,0))}</td><td>${n(rows.reduce((a,c)=>a+c.conv,0))}</td><td>${n(res)}</td><td>${res?rs1(sp/res):'–'}</td></tr>`;
-  $('m-camp').innerHTML=`<tr><th>Campaign</th><th class="l">Account</th><th class="l">Course</th><th>Spend</th><th>Form leads</th><th>Chats</th><th>Counted</th><th>Cost per result</th></tr>`+[...rows].sort((a,b)=>b.spend-a.spend).map(c=>`<tr><td class="t">${esc(c.name)}</td><td class="l">${esc(c.acc)}</td><td class="l"><span class="tag">${dot(CAT[c.cat].color)}${esc(CAT[c.cat].name)}</span></td><td>${rs(c.spend)}</td><td>${n(c.lead)}</td><td>${n(c.conv)}</td><td><b>${n(c.res)}</b></td><td>${c.res?rs1(c.spend/c.res):'–'}</td></tr>`).join('');
+  $('m-camp').innerHTML=`<tr><th>Campaign</th><th class="l">Account</th><th class="l">Course</th><th>Spend</th><th>Form leads</th><th>Chats</th><th>Counted</th><th>Cost per result</th><th>CTR</th><th>CPM</th><th>CPC</th><th>Freq.</th><th>Hook</th><th>Hold</th></tr>`+[...rows].sort((a,b)=>b.spend-a.spend).map(c=>`<tr><td class="t">${esc(c.name)}</td><td class="l">${esc(c.acc)}</td><td class="l"><span class="tag">${dot(CAT[c.cat].color)}${esc(CAT[c.cat].name)}</span></td><td>${rs(c.spend)}</td><td>${n(c.lead)}</td><td>${n(c.conv)}</td><td><b>${n(c.res)}</b></td><td>${c.res?rs1(c.spend/c.res):'–'}</td>${(x=>`<td>${p2(x.ctr)}</td><td>${r2(x.cpm)}</td><td>${r2(x.cpc)}</td><td>${f2(x.freq)}</td><td>${p1(x.hook)}</td><td>${p1(x.hold)}</td>`)(adM([c]))}</tr>`).join('');
+}
+
+/* ---------- OVERVIEW ---------- */
+const QORD=[['won','Won'],['imp','Good'],['bad','Bad'],['oth','No idea']];
+function renderOverview(){
+  const M=mk(),lr=D.cube.filter(r=>r[0].slice(0,7)===M.key);
+  $('o-body').innerHTML=SECS.map(S=>{
+    const mr=metaRows(G.month,S.k),sp=mr.reduce((a,c)=>a+c.spend,0),res=mr.reduce((a,c)=>a+c.res,0);
+    const ml=lr.filter(S.m),ol=lr.filter(S.o),all=ml.concat(ol),sum=R=>R.reduce((a,r)=>a+r[4],0),q=grpAll(all),tg=grp(all,3);
+    const teams=TEAMS.filter(t=>tg[t]).sort((a,b)=>tg[b].t-tg[a].t);
+    const ads=S.noAds?blk('Meta spend','Not connected','English ad account')+blk('Meta leads','Not connected','English ad account'):blk('Meta spend',rs(sp),'without GST')+blk('Meta spend with GST',rs(sp*(1+GST)),'GST 18%')+blk('Meta leads',n(res),res?rs1(sp/res)+' per lead':'from the ad account');
+    return `<div class="card sec"><div class="sechead"><span class="tag">${dot(S.color)}<b>${S.name}</b></span><span class="pill">${esc(M.label)}</span></div><p class="sub">${S.note}</p>
+      <div class="blocks b5">${ads}${blk('Metrix leads',n(sum(ml)),'from Meta campaigns, organic removed')}${blk('Organic leads',n(sum(ol)),'in Metrix')}</div>
+      <h3>How these ${n(q.t)} Metrix leads stand</h3>
+      <div class="blocks b4">${QORD.map(g=>blk(g[1],n(q[g[0]]),pct(q[g[0]],q.t)+' of leads',gcol(g[0]))).join('')}</div>
+      <h3>By team</h3>
+      <div class="blocks bt">${teams.length?teams.map(t=>{const c=tg[t];return `<div class="blk"><div class="l"><span class="tag">${dot(TCOL[t])}${esc(t)}</span></div><div class="v num">${n(c.t)} <small>${pct(c.t,q.t)}</small></div><div class="qmini">${QORD.map(g=>c[g[0]]?`<i style="flex:${c[g[0]]};background:${gcol(g[0])}"></i>`:'').join('')}</div><div class="h">${QORD.map(g=>`${g[1]} <b class="num">${n(c[g[0]])}</b>`).join(' · ')}</div></div>`}).join(''):'<div class="sub">No leads in this period.</div>'}</div></div>`}).join('');
 }
 
 /* ---------- LEADS ---------- */
 const TEAMS=(()=>{const m={};D.cube.forEach(r=>m[r[3]]=(m[r[3]]||0)+r[4]);return Object.keys(m).filter(t=>t!=='No team').sort((a,b)=>m[b]-m[a]).concat(m['No team']?['No team']:[])})();
 const TCOL=Object.fromEntries(TEAMS.map((t,i)=>[t,t==='No team'?'var(--c-ot)':TEAMVAR[i%6]]));
-const LS={gran:'day',sel:null,cat:'ALL',team:null};
+const CLSN={SM:'Skills · Meta',SO:'Skills · Organic',EM:'English · Meta',EO:'English · Organic',XX:'Unclassified'};
+const LS={gran:'day',sel:null,cat:'ALL',team:null,cls:'ALL'};
 const mk=()=>MI[G.month]||NOM;
 function monday(d){const t=new Date(d+'T00:00:00Z');const k=(t.getUTCDay()+6)%7;t.setUTCDate(t.getUTCDate()-k);return t.toISOString().slice(0,10)}
 function addDays(d,k){const t=new Date(d+'T00:00:00Z');t.setUTCDate(t.getUTCDate()+k);return t.toISOString().slice(0,10)}
@@ -360,14 +411,16 @@ function plabel(k,long){if(LS.gran==='day')return long?dm(k)+' '+k.slice(0,4):St
 function inScope(d){return LS.gran==='month'?true:d.slice(0,7)===mk().key}
 function scopeLabel(){return LS.gran==='month'?'all months in the sheets':mk().label+' '+mk().year}
 function periods(){if(LS.gran==='day')return Array.from({length:llast()},(_,i)=>dd(i+1));if(LS.gran==='week')return [...new Set(Array.from({length:llast()},(_,i)=>pkey(dd(i+1))))];return [...new Set(D.cube.map(r=>r[0].slice(0,7)))].sort()}
-function rowsFor(o){o=o||{};return D.cube.filter(r=>inScope(r[0])&&(o.noSel||!LS.sel||pkey(r[0])===LS.sel)&&(LS.cat==='ALL'||r[1]===LS.cat)&&(o.noTeam||!LS.team||r[3]===LS.team))}
+function rowsFor(o){o=o||{};return D.cube.filter(r=>inScope(r[0])&&(o.noSel||!LS.sel||pkey(r[0])===LS.sel)&&(LS.cat==='ALL'||r[1]===LS.cat)&&(LS.cls==='ALL'||r[5]===LS.cls)&&(o.noTeam||!LS.team||r[3]===LS.team))}
 function sumBy(rows,i){const m={};rows.forEach(r=>m[r[i]]=(m[r[i]]||0)+r[4]);return m}
 function grp(rows,i){const m={};rows.forEach(r=>{const o=m[r[i]]||(m[r[i]]={t:0,imp:0,won:0,oth:0,bad:0});o.t+=r[4];o[SG[r[2]]]+=r[4]});return m}
 function grpAll(rows){const o={t:0,imp:0,won:0,oth:0,bad:0};rows.forEach(r=>{o.t+=r[4];o[SG[r[2]]]+=r[4]});return o}
 function selText(){return LS.sel?plabel(LS.sel,true):scopeLabel()}
 function controls(el,rerender){
   const P=periods();
-  el.innerHTML=`<div class="ctl"><span>View by</span><div class="seg" id="${el.id}-g"></div></div><div class="ctl"><span>Showing</span><select id="${el.id}-p" aria-label="Period"><option value="">${esc(LS.gran==='month'?'All months':'Whole of '+mk().label)}</option>${P.map(k=>`<option value="${k}" ${LS.sel===k?'selected':''}>${esc(plabel(k,true))}</option>`).join('')}</select></div><div class="ctl wide"><span>Course</span><div class="chips" id="${el.id}-c"></div></div>`;
+  el.innerHTML=`<div class="ctl"><span>View by</span><div class="seg" id="${el.id}-g"></div></div><div class="ctl"><span>Showing</span><select id="${el.id}-p" aria-label="Period"><option value="">${esc(LS.gran==='month'?'All months':'Whole of '+mk().label)}</option>${P.map(k=>`<option value="${k}" ${LS.sel===k?'selected':''}>${esc(plabel(k,true))}</option>`).join('')}</select></div><div class="ctl wide"><span>Lead type</span><div class="chips" id="${el.id}-k"></div></div><div class="ctl wide"><span>Course</span><div class="chips" id="${el.id}-c"></div></div>`;
+  $(el.id+'-k').innerHTML=[['ALL','All leads']].concat(Object.entries(CLSN)).map(c=>`<button type="button" class="chip ${LS.cls===c[0]?'on':''}" data-v="${c[0]}" aria-pressed="${LS.cls===c[0]}">${esc(c[1])}</button>`).join('');
+  $(el.id+'-k').querySelectorAll('button').forEach(b=>b.onclick=()=>{LS.cls=b.dataset.v;rerender()});
   seg($(el.id+'-g'),[['day','Daily'],['week','Weekly'],['month','Monthly']],LS.gran,v=>{LS.gran=v;LS.sel=v==='month'?mk().key:null;rerender()});
   $(el.id+'-p').onchange=e=>{LS.sel=e.target.value||null;rerender()};
   $(el.id+'-c').innerHTML=[['ALL','All courses','']].concat(CATS).map(c=>`<button type="button" class="chip ${LS.cat===c[0]?'on':''}" data-v="${c[0]}" aria-pressed="${LS.cat===c[0]}">${c[2]?`<i style="background:${c[2]}"></i>`:''}${esc(c[1])}</button>`).join('');
@@ -383,7 +436,7 @@ function trend(el,rows,rerender){
   const showVal=w>=30, step=LS.gran==='day'?Math.max(1,Math.ceil(17/w)):1;
   let h=`<div class="plot">`;
   [1,.5].forEach(f=>h+=`<div class="grid" style="bottom:${f*100}%"><span>${n(max*f)}</span></div>`);
-  h+=`<div class="cols">`+P.map(k=>{const a=agg[k]||z;const tipH=`<b>${esc(plabel(k,true))}</b>`+trow('','Leads',n(a.t))+trow(gcol('imp'),'Important',n(a.imp))+trow(gcol('won'),'Won',n(a.won))+trow(gcol('bad'),'Worst',n(a.bad));
+  h+=`<div class="cols">`+P.map(k=>{const a=agg[k]||z;const tipH=`<b>${esc(plabel(k,true))}</b>`+trow('','Leads',n(a.t))+trow(gcol('imp'),'Good',n(a.imp))+trow(gcol('won'),'Won',n(a.won))+trow(gcol('bad'),'Bad',n(a.bad));
     return `<div class="col ${LS.sel===k?'sel':''} ${LS.sel&&LS.sel!==k?'dim':''}" data-k="${k}" data-tip="${esc(tipH)}" role="button" tabindex="0" aria-label="${esc(plabel(k,true))}: ${a.t} leads">${showVal?`<span class="lbl num">${n(a.t)}</span>`:''}<div class="bar" style="height:${a.t/max*100}%"></div></div>`}).join('')+`</div></div>`;
   h+=`<div class="xl">`+P.map((k,i)=>`<span>${i%step===0?esc(plabel(k)):''}</span>`).join('')+`</div>`;
   el.innerHTML=h;bindTips(el);
@@ -392,7 +445,7 @@ function trend(el,rows,rerender){
 function quality(el,items){
   const keys=`<div class="qkeys">`+GROUPS.map(g=>`<span>${dot(gcol(g[0]))}${g[1]}${g[0]==='imp'?' (Hot, Warm, Slot Booked, Office Visit)':g[0]==='bad'?' (Lost, Unfit)':g[0]==='oth'?' (New, Qualified, Cold and the rest)':''}</span>`).join('')+`</div>`;
   el.innerHTML=items.length?keys+`<div class="qb">`+items.map(it=>{const c=it.c;const tipH=`<b>${esc(it.label)} · ${n(c.t)} leads</b>`+GROUPS.map(g=>trow(gcol(g[0]),g[1],n(c[g[0]])+' · '+pct(c[g[0]],c.t))).join('');
-    return `<div class="q" data-tip="${esc(tipH)}"><div class="top"><span class="l">${it.color?dot(it.color):''}${esc(it.label)}</span><small><b class="num">${n(c.t)}</b> leads · <b class="num">${n(c.imp)}</b> important · <b class="num">${n(c.bad)}</b> worst</small></div><div class="qbar" role="img" aria-label="${esc(it.label)}: ${pct(c.imp,c.t)} important, ${pct(c.won,c.t)} won, ${pct(c.bad,c.t)} worst">${GROUPS.map(g=>c[g[0]]?`<i style="flex:${c[g[0]]};background:${gcol(g[0])}">${c[g[0]]/c.t>=.08?pct(c[g[0]],c.t):''}</i>`:'').join('')}</div></div>`}).join('')+`</div>`:'<div class="sub">Nothing in this selection.</div>';
+    return `<div class="q" data-tip="${esc(tipH)}"><div class="top"><span class="l">${it.color?dot(it.color):''}${esc(it.label)}</span><small><b class="num">${n(c.t)}</b> leads · <b class="num">${n(c.imp)}</b> good · <b class="num">${n(c.bad)}</b> bad</small></div><div class="qbar" role="img" aria-label="${esc(it.label)}: ${pct(c.imp,c.t)} good, ${pct(c.won,c.t)} won, ${pct(c.bad,c.t)} bad">${GROUPS.map(g=>c[g[0]]?`<i style="flex:${c[g[0]]};background:${gcol(g[0])}">${c[g[0]]/c.t>=.08?pct(c[g[0]],c.t):''}</i>`:'').join('')}</div></div>`}).join('')+`</div>`:'<div class="sub">Nothing in this selection.</div>';
   bindTips(el);
 }
 function statusBars(el,st,total){
@@ -409,10 +462,11 @@ const teamSeries=()=>TEAMS.map(t=>({key:t,label:t,color:TCOL[t]}));
 const stCols=STATUSES.map(s=>({key:s,label:s,g:SG[s]}));
 function cross(rows,i,j){const m={};rows.forEach(r=>{const k=r[i]+'|'+r[j];m[k]=(m[k]||0)+r[4]});return (a,b)=>m[a+'|'+b]||0}
 
+function _hoist(){}
 function renderMetrix(){
   controls($('x-controls'),renderMetrix);
   const rows=rowsFor({noTeam:true}),a=grpAll(rows),st=sumBy(rows,2),ct=grp(rows,1);
-  $('x-tiles').innerHTML=tile('Leads',n(a.t),esc(selText()),'var(--c-ve)',IC.users)+tile('Important',n(a.imp),pct(a.imp,a.t)+' · hot, warm, slot, visit','var(--g-imp)',IC.flame)+tile('Won',n(a.won),pct(a.won,a.t)+' of leads','var(--g-won)',IC.check)+tile('Worst',n(a.bad),pct(a.bad,a.t)+' · lost, unfit','var(--g-bad)',IC.x);
+  $('x-tiles').innerHTML=tile('Leads',n(a.t),esc(selText()),'var(--c-ve)',IC.users)+tile('Good',n(a.imp),pct(a.imp,a.t)+' · hot, warm, slot, visit','var(--g-imp)',IC.flame)+tile('Won',n(a.won),pct(a.won,a.t)+' of leads','var(--g-won)',IC.check)+tile('Bad',n(a.bad),pct(a.bad,a.t)+' · lost, unfit','var(--g-bad)',IC.x);
   $('x-trend-t').textContent=({day:'New leads each day',week:'New leads each week',month:'New leads each month'})[LS.gran]+(LS.cat==='ALL'?'':' · '+CAT[LS.cat].name);
   trend($('x-trend'),rowsFor({noSel:true,noTeam:true}),renderMetrix);
   const sub=selText()+(LS.cat==='ALL'?'':' · '+CAT[LS.cat].name);
@@ -427,12 +481,12 @@ function renderTeams(){
   controls($('t-controls'),renderTeams);
   const all=rowsFor({noTeam:true}),tg=grp(all,3),tot=all.reduce((x,r)=>x+r[4],0);
   const real=TEAMS.filter(t=>tg[t]);
-  $('t-cards').innerHTML=TEAMS.filter(t=>t!=='No team').map(t=>{const c=tg[t]||{t:0,imp:0,won:0,bad:0};return `<button type="button" class="tc ${LS.team===t?'on':''}" data-t="${esc(t)}" aria-pressed="${LS.team===t}"><div class="n">${dot(TCOL[t])}${esc(t)}</div><div class="big num">${n(c.t)}</div><div class="m">leads · ${pct(c.t,tot)} of all</div><div class="m" style="margin-top:8px"><b class="num">${n(c.imp)}</b> important · <b class="num">${pct(c.imp,c.t)}</b></div><div class="m"><b class="num">${n(c.won)}</b> won · <b class="num">${n(c.bad)}</b> worst</div></button>`}).join('');
+  $('t-cards').innerHTML=TEAMS.filter(t=>t!=='No team').map(t=>{const c=tg[t]||{t:0,imp:0,won:0,bad:0};return `<button type="button" class="tc ${LS.team===t?'on':''}" data-t="${esc(t)}" aria-pressed="${LS.team===t}"><div class="n">${dot(TCOL[t])}${esc(t)}</div><div class="big num">${n(c.t)}</div><div class="m">leads · ${pct(c.t,tot)} of all</div><div class="m" style="margin-top:8px"><b class="num">${n(c.imp)}</b> good · <b class="num">${pct(c.imp,c.t)}</b></div><div class="m"><b class="num">${n(c.won)}</b> won · <b class="num">${n(c.bad)}</b> bad</div></button>`}).join('');
   $('t-cards').querySelectorAll('.tc').forEach(b=>b.onclick=()=>{LS.team=LS.team===b.dataset.t?null:b.dataset.t;renderTeams()});
   const sub=selText()+(LS.cat==='ALL'?'':' · '+CAT[LS.cat].name);
   $('t-share-s').textContent=sub+'. Number of leads and share of the total.';
   hbars($('t-share'),real.map(t=>({label:t,color:TCOL[t],value:tg[t].t,sub:pct(tg[t].t,tot)})),n);
-  hbars($('t-imp'),real.filter(t=>t!=='No team').map(t=>({label:t,color:TCOL[t],bar:'var(--g-imp)',value:tg[t].t?tg[t].imp/tg[t].t*100:0,sub:n(tg[t].imp),tip:`${n(tg[t].imp)} important of ${n(tg[t].t)} leads`})).sort((a,b)=>b.value-a.value),v=>Math.round(v)+'%',100);
+  hbars($('t-imp'),real.filter(t=>t!=='No team').map(t=>({label:t,color:TCOL[t],bar:'var(--g-imp)',value:tg[t].t?tg[t].imp/tg[t].t*100:0,sub:n(tg[t].imp),tip:`${n(tg[t].imp)} good of ${n(tg[t].t)} leads`})).sort((a,b)=>b.value-a.value),v=>Math.round(v)+'%',100);
   $('t-q-s').textContent=sub+'. Each bar is 100% of that team\'s leads.';
   quality($('t-quality'),real.map(t=>({label:t,color:TCOL[t],c:tg[t]})));
   matrix($('t-ms'),teamSeries(),stCols,cross(all,3,2),'Team');
@@ -468,10 +522,10 @@ function initReview(){
 
 /* ---------- SIDE RAIL ---------- */
 function renderSide(){
-  const M=mk(),rows=metaRows(G.month,'all'),sp=rows.reduce((a,c)=>a+c.spend,0),res=rows.reduce((a,c)=>a+c.res,0);
+  const M=mk(),rows=metaRows(G.month,'ALL'),sp=rows.reduce((a,c)=>a+c.spend,0),res=rows.reduce((a,c)=>a+c.res,0);
   const lr=D.cube.filter(r=>r[0].slice(0,7)===M.key),a=grpAll(lr),st=sumBy(lr,2),un=lr.filter(r=>r[1]==='UN').reduce((x,r)=>x+r[4],0);
   $('s-title').textContent=M.label+' at a glance';const fr=d=>d?dm(d)+' '+d.slice(0,4):'not loaded';const ft='Meta ads updated '+fr(META.asOf)+'. Metrix leads updated to '+fr(LEADS.asOf)+'.';$('s-cap').textContent=ft;$('fresh').textContent=ft+' Ads refresh every morning; leads refresh when a new Metrix export is added.';$('org-sub').textContent=MKEYS.map(k=>MI[k].label).join(', ')+' '+M.year;
-  $('s-stats').innerHTML=[['Ad spend with GST',rs(sp*(1+GST))],['Ad spend without GST',rs(sp)],['Leads from ads',n(res)],['Cost per result',res?rs1(sp/res):'–'],['Leads created in Metrix',n(a.t)],['Important leads',n(a.imp)+' · '+pct(a.imp,a.t)],['Won so far',n(a.won)+' · '+pct(a.won,a.t)],['Worst (lost, unfit)',n(a.bad)+' · '+pct(a.bad,a.t)]].map(s=>`<div class="stat"><span>${s[0]}</span><b class="num">${s[1]}</b></div>`).join('');
+  $('s-stats').innerHTML=[['Ad spend with GST',rs(sp*(1+GST))],['Ad spend without GST',rs(sp)],['Leads from ads',n(res)],['Cost per result',res?rs1(sp/res):'–'],['Leads created in Metrix',n(a.t)],['Good leads',n(a.imp)+' · '+pct(a.imp,a.t)],['Won so far',n(a.won)+' · '+pct(a.won,a.t)],['Bad (lost, unfit)',n(a.bad)+' · '+pct(a.bad,a.t)]].map(s=>`<div class="stat"><span>${s[0]}</span><b class="num">${s[1]}</b></div>`).join('');
   const cats=metaByCat(rows).filter(c=>c.res).sort((x,y)=>y.spend/y.res-x.spend/x.res);
   const items=[['var(--c-vew)',`<b>${n(un)} leads</b> created in ${M.name} have no campaign and are not counted under any course.`],['var(--g-imp)',`<b>${n(st['New']||0)} ${M.name} leads</b> are still marked New and ${n(st['Not Connected']||0)} are Not Connected.`]];
   if(cats.length>1)items.push(['var(--c-aiw)',`<b>${esc(cats[0].name)}</b> has the highest cost per result at ${rs1(cats[0].spend/cats[0].res)}; ${esc(cats[cats.length-1].name)} the lowest at ${rs1(cats[cats.length-1].spend/cats[cats.length-1].res)}.`]);
@@ -486,7 +540,7 @@ try{const s=localStorage.getItem('rootme-theme');if(s)root.dataset.theme=s}catch
 $('theme').onclick=()=>{const t=isDark()?'light':'dark';root.dataset.theme=t;try{localStorage.setItem('rootme-theme',t)}catch(e){}paintTheme()};
 
 /* ---------- ROUTER ---------- */
-const VIEWS_ALL={meta:['Meta ads','Ad spend, leads and cost per result','<path d="M4 19V9M10 19V5M16 19v-7M21 19H3"/>',renderMeta,'Meta ads'],metrix:['Metrix leads','Leads by course and status','<circle cx="12" cy="12" r="9"/><path d="M12 3v9l6 4"/>',renderMetrix,'Leads'],teams:['Teams','How each sales team is doing with its leads','<circle cx="8" cy="9" r="3"/><circle cx="17" cy="9" r="3"/><path d="M2.500 19c.500-3 2.700-4.500 5.500-4.500s5 1.500 5.500 4.500M14 14.700c.900-.200 1.900-.200 3-.200 2.800 0 4.500 1.500 5 4.500"/>',renderTeams,'Teams'],review:['Needs review','Leads that are not linked to a campaign yet','<path d="M12 8v5M12 16.500v.500"/><path d="M10.300 3.900 2.600 17.500A2 2 0 0 0 4.300 20.500h15.400a2 2 0 0 0 1.700-3L13.700 3.900a2 2 0 0 0-3.400 0z"/>',()=>{},'Review']};
+const VIEWS_ALL={overview:['Overview','Rootme Skills, Rootme Contech and Rootme English at a glance','<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/>',renderOverview,'Overview'],meta:['Meta ads','Ad spend, leads and cost per result','<path d="M4 19V9M10 19V5M16 19v-7M21 19H3"/>',renderMeta,'Meta ads'],metrix:['Metrix leads','Leads by course and status','<circle cx="12" cy="12" r="9"/><path d="M12 3v9l6 4"/>',renderMetrix,'Leads'],teams:['Teams','How each sales team is doing with its leads','<circle cx="8" cy="9" r="3"/><circle cx="17" cy="9" r="3"/><path d="M2.500 19c.500-3 2.700-4.500 5.500-4.500s5 1.500 5.500 4.500M14 14.700c.900-.200 1.900-.200 3-.200 2.800 0 4.500 1.500 5 4.500"/>',renderTeams,'Teams'],review:['Needs review','Leads that are not linked to a campaign yet','<path d="M12 8v5M12 16.500v.500"/><path d="M10.300 3.900 2.600 17.500A2 2 0 0 0 4.300 20.500h15.400a2 2 0 0 0 1.700-3L13.700 3.900a2 2 0 0 0-3.400 0z"/>',()=>{},'Review']};
 const VIEWS=MODE==='review'?{review:VIEWS_ALL.review}:(({review,...r})=>r)(VIEWS_ALL);const HOME=Object.keys(VIEWS)[0];
 let CUR=HOME;
 function draw(){
