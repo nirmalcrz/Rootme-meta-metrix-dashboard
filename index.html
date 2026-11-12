@@ -151,7 +151,7 @@ tr.tot td{font-weight:800;border-top:1px solid var(--line2)}
 td.heat{border-radius:8px;font-weight:600}
 .tag{display:inline-flex;align-items:center;gap:6px;font-weight:600}
 .pill{display:inline-block;border-radius:999px;padding:2px 9px;font-size:11.5px;font-weight:700;background:var(--track);color:var(--muted)}
-.teamcards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.teamcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
 .tc{text-align:left;border:1px solid var(--line);background:var(--card);border-radius:20px;padding:16px;transition:all .3s;min-width:0}
 .tc:hover{transform:translateY(-2px);box-shadow:0 10px 24px -14px rgba(15,23,42,.25)}
 .tc.on{border-color:var(--ink)}
@@ -294,7 +294,7 @@ const GROUPS=[['imp','Important',['Hot','Warm','Slot Booked','Office Visit']],['
 const SG={};GROUPS.forEach(g=>g[2].forEach(s=>SG[s]=g[0]));
 const STATUSES=GROUPS.flatMap(g=>g[2]);
 const gcol=g=>`var(--g-${g})`;
-const TEAMVAR=['var(--c-ve)','var(--c-vew)','var(--c-ct)','var(--c-ai)','var(--c-gd)'];
+const TEAMVAR=['var(--c-ve)','var(--c-vew)','var(--c-ct)','var(--c-ai)','var(--c-gd)','var(--c-aiw)'];
 const GST=0.18;
 const FULLM=['January','February','March','April','May','June','July','August','September','October','November','December'];
 const MKEYS=Object.keys(META.months).sort().slice(-3);
@@ -346,7 +346,7 @@ function renderMeta(){
 
 /* ---------- LEADS ---------- */
 const TEAMS=(()=>{const m={};D.cube.forEach(r=>m[r[3]]=(m[r[3]]||0)+r[4]);return Object.keys(m).filter(t=>t!=='No team').sort((a,b)=>m[b]-m[a]).concat(m['No team']?['No team']:[])})();
-const TCOL=Object.fromEntries(TEAMS.map((t,i)=>[t,t==='No team'?'var(--c-ot)':TEAMVAR[i%5]]));
+const TCOL=Object.fromEntries(TEAMS.map((t,i)=>[t,t==='No team'?'var(--c-ot)':TEAMVAR[i%6]]));
 const LS={gran:'day',sel:null,cat:'ALL',team:null};
 const mk=()=>MI[G.month]||NOM;
 function monday(d){const t=new Date(d+'T00:00:00Z');const k=(t.getUTCDay()+6)%7;t.setUTCDate(t.getUTCDate()-k);return t.toISOString().slice(0,10)}
