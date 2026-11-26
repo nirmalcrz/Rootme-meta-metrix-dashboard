@@ -64,6 +64,7 @@ footer{color:var(--mute);font-size:12px;line-height:1.6;margin-top:8px}
 </div>
 <script src="meta.js"></script>
 <script src="leads.js"></script>
+<script src="metadaily.js"></script>
 <script>
 const SECS=[
  {id:'ve',name:'Video Editing',note:'Video Editing + Video Editing Workshop + Graphic Design (no Contech, no AI, no AI Workshop)',cats:['VE','VEW','GD'],c:'#0d6efd'},
@@ -86,7 +87,11 @@ const pct=(a,b)=>b?(a*100/b).toFixed(1)+'%':'–';
 function grpOf(s){for(const g of GRP)if(g.s&&g.s.includes(s))return g.k;return 'nu'}
 function calc(sec){
  const cs=new Set(sec.cats);
- let meta=0;(META.months[M]||[]).forEach(c=>{if(cs.has(c.cat))meta+=Math.max(c.lead||0,c.conv||0)});
+ let meta=0;const cut=LEADS.asOf;
+ if(M<cut.slice(0,7)){(META.months[M]||[]).forEach(c=>{if(cs.has(c.cat))meta+=Math.max(c.lead||0,c.conv||0)})}
+ else{const by={};METADAILY.rows.forEach(r=>{if(r[0].startsWith(M)&&r[1]<=cut&&cs.has(r[3])){const k=r[2];by[k]=by[k]||[0,0];by[k][0]+=r[4];by[k][1]+=r[5]}});
+  Object.values(by).forEach(v=>meta+=Math.max(v[0],v[1]));
+  (META.months[M]||[]).forEach(c=>{if(c.acc!=='Rootme Skills'&&cs.has(c.cat))meta+=Math.max(c.lead||0,c.conv||0)})}
  const g={won:0,good:0,unfit:0,nc:0,nu:0},tag={};let tot=0;
  LEADS.cube.forEach(r=>{if(!r[0].startsWith(M)||!cs.has(r[1]))return;
   if(!(r[5]==='SM'||(O&&r[5]==='SO')))return;
@@ -94,7 +99,7 @@ function calc(sec){
  return{meta,tot,g,tag};
 }
 function render(){
- document.getElementById('asof').textContent=(MN[M]||M)+' '+M.slice(0,4)+' · Metrix data up to '+LEADS.asOf+' · Meta up to '+META.asOf;
+ document.getElementById('asof').textContent=(MN[M]||M)+' '+M.slice(0,4)+' · Meta and Metrix both up to '+LEADS.asOf;
  document.getElementById('mseg').innerHTML=months.map(m=>`<button data-m="${m}" class="${m===M?'on':''}">${(MN[m]||m).slice(0,3)}</button>`).join('');
  document.getElementById('out').innerHTML=SECS.map(sec=>{const d=calc(sec);
   const bar=GRP.map(g=>`<i style="width:${d.tot?d.g[g.k]*100/d.tot:0}%;background:${g.c}" title="${g.n}"></i>`).join('');
