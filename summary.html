@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rootme Skills – Lead Summary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8f9fc;--card:#fff;--ink:#14161f;--mute:#6b7185;--line:#e8eaf2;
+--won:#16a34a;--good:#0d6efd;--bad:#e11d48;--nc:#f59e0b;--nu:#94a3b8;--meta:#7c3aed}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1017;--card:#171a24;--ink:#eef0f6;--mute:#9aa1b5;--line:#262a38;--nu:#64748b}}
+[data-theme=light]{--bg:#f8f9fc;--card:#fff;--ink:#14161f;--mute:#6b7185;--line:#e8eaf2;--nu:#94a3b8}
+[data-theme=dark]{--bg:#0e1017;--card:#171a24;--ink:#eef0f6;--mute:#9aa1b5;--line:#262a38;--nu:#64748b}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+.wrap{max-width:1100px;margin:0 auto;padding:24px 16px 48px}
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:18px}
+h1{font-size:22px;margin:0;font-weight:800}
+.sub{color:var(--mute);font-size:13px;margin-top:4px}
+.ctrls{display:flex;gap:8px;flex-wrap:wrap}
+.seg{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:3px}
+.seg button{border:0;background:none;color:var(--mute);font:inherit;font-size:13px;font-weight:600;padding:7px 12px;border-radius:9px;cursor:pointer}
+.seg button.on{background:#0d6efd;color:#fff}
+.icon{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:7px 11px;cursor:pointer;font:inherit}
+.sec{background:var(--card);border-radius:24px;padding:20px;margin-bottom:16px;border:1px solid var(--line)}
+.sec h2{margin:0 0 2px;font-size:18px;display:flex;align-items:center;gap:8px}
+.dot{width:10px;height:10px;border-radius:50%}
+.note{color:var(--mute);font-size:12px;margin-bottom:14px}
+.top{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:14px}
+.big{border:1px solid var(--line);border-radius:18px;padding:14px}
+.big .l{color:var(--mute);font-size:12px;font-weight:600}
+.big .v{font-size:30px;font-weight:800;margin-top:2px}
+.big .s{color:var(--mute);font-size:12px}
+.bar{display:flex;height:14px;border-radius:8px;overflow:hidden;background:var(--line);margin:4px 0 14px}
+.bar i{display:block;height:100%}
+.st{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.b{border-radius:16px;padding:12px;border:1px solid var(--line);position:relative;overflow:hidden}
+.b:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c)}
+.b .l{font-size:12px;font-weight:700;color:var(--c)}
+.b .v{font-size:24px;font-weight:800}
+.b .p{font-size:13px;color:var(--mute);font-weight:600}
+.b .t{font-size:11px;color:var(--mute);margin-top:4px}
+.total{border:2px solid #0d6efd}
+footer{color:var(--mute);font-size:12px;line-height:1.6;margin-top:8px}
+@media (max-width:720px){.st{grid-template-columns:repeat(2,1fr)}.st .b:last-child{grid-column:span 2}.big .v{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <div><h1>Rootme Skills – Lead Summary</h1><div class="sub" id="asof"></div></div>
+ <div class="ctrls">
+  <div class="seg" id="mseg"></div>
+  <div class="seg" id="oseg"><button data-o="0" class="on">Metrix: from Meta ads</button><button data-o="1">Incl. organic</button></div>
+  <button class="icon" id="theme" title="Dark mode">◐</button>
+ </div>
+</header>
+<div id="out"></div>
+<footer>
+<b>How it is counted.</b> Meta leads = for each campaign, the higher of lead-form leads and message conversations. Metrix leads = leads created in Metrix in the month, tagged with that course's campaigns (“from Meta ads” = Meta campaigns only; “incl. organic” adds organic campaigns/sources).<br>
+<b>Good</b> = Hot, Warm, Office Visit. <b>Unfit</b> = Lost, Unfit. <b>No update</b> = every other tag (New, Qualified, Online, Cold, Slot Booked).
+</footer>
+</div>
+<script src="meta.js"></script>
+<script src="leads.js"></script>
+<script>
+const SECS=[
+ {id:'ve',name:'Video Editing',note:'Video Editing + Video Editing Workshop + Graphic Design (no Contech, no AI, no AI Workshop)',cats:['VE','VEW','GD'],c:'#0d6efd'},
+ {id:'ct',name:'Contech',note:'Contech Marketing',cats:['CT'],c:'#f97316'},
+ {id:'ai',name:'AI Web',note:'AI Web Development + AI Workshop',cats:['AI','AIW'],c:'#16a34a'},
+ {id:'all',name:'Rootme Skills – Total',note:'Video Editing, AI, Contech, Graphic Design and both Workshops',cats:['VE','VEW','GD','CT','AI','AIW'],c:'#7c3aed',total:1}
+];
+const GRP=[
+ {k:'won',n:'Won',c:'var(--won)',s:['Won']},
+ {k:'good',n:'Good',c:'var(--good)',s:['Hot','Warm','Office Visit']},
+ {k:'unfit',n:'Unfit',c:'var(--bad)',s:['Lost','Unfit']},
+ {k:'nc',n:'Not Connected',c:'var(--nc)',s:['Not Connected']},
+ {k:'nu',n:'No update',c:'var(--nu)',s:null}
+];
+const MN={'2026-10':'October','2026-11':'November','2026-12':'December'};
+const months=Object.keys(META.months).filter(m=>LEADS.cube.some(r=>r[0].startsWith(m))).sort();
+let M=months[months.length-1],O=0;
+const fmt=n=>n.toLocaleString('en-IN');
+const pct=(a,b)=>b?(a*100/b).toFixed(1)+'%':'–';
+function grpOf(s){for(const g of GRP)if(g.s&&g.s.includes(s))return g.k;return 'nu'}
+function calc(sec){
+ const cs=new Set(sec.cats);
+ let meta=0;(META.months[M]||[]).forEach(c=>{if(cs.has(c.cat))meta+=Math.max(c.lead||0,c.conv||0)});
+ const g={won:0,good:0,unfit:0,nc:0,nu:0},tag={};let tot=0;
+ LEADS.cube.forEach(r=>{if(!r[0].startsWith(M)||!cs.has(r[1]))return;
+  if(!(r[5]==='SM'||(O&&r[5]==='SO')))return;
+  g[grpOf(r[2])]+=r[4];tot+=r[4];if(grpOf(r[2])==='nu')tag[r[2]]=(tag[r[2]]||0)+r[4]});
+ return{meta,tot,g,tag};
+}
+function render(){
+ document.getElementById('asof').textContent=(MN[M]||M)+' '+M.slice(0,4)+' · Metrix data up to '+LEADS.asOf+' · Meta up to '+META.asOf;
+ document.getElementById('mseg').innerHTML=months.map(m=>`<button data-m="${m}" class="${m===M?'on':''}">${(MN[m]||m).slice(0,3)}</button>`).join('');
+ document.getElementById('out').innerHTML=SECS.map(sec=>{const d=calc(sec);
+  const bar=GRP.map(g=>`<i style="width:${d.tot?d.g[g.k]*100/d.tot:0}%;background:${g.c}" title="${g.n}"></i>`).join('');
+  const nuT=Object.entries(d.tag).sort((a,b)=>b[1]-a[1]).map(([k,v])=>k+' '+v).join(' · ');
+  return `<div class="sec ${sec.total?'total':''}"><h2><span class="dot" style="background:${sec.c}"></span>${sec.name}</h2><div class="note">${sec.note}</div>
+  <div class="top"><div class="big"><div class="l">Leads from Meta</div><div class="v" style="color:var(--meta)">${fmt(d.meta)}</div><div class="s">as counted by Meta Ads</div></div>
+  <div class="big"><div class="l">Leads in Metrix</div><div class="v">${fmt(d.tot)}</div><div class="s">${d.meta?pct(d.tot,d.meta)+' of Meta leads reached Metrix':''}</div></div></div>
+  <div class="bar">${bar}</div>
+  <div class="st">${GRP.map(g=>`<div class="b" style="--c:${g.c}"><div class="l">${g.n}</div><div class="v">${fmt(d.g[g.k])}</div><div class="p">${pct(d.g[g.k],d.tot)}</div>${g.k==='nu'&&nuT?`<div class="t">${nuT}</div>`:''}</div>`).join('')}</div></div>`}).join('');
+}
+document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+ if(b.dataset.m){M=b.dataset.m;render()}
+ if(b.dataset.o!==undefined){O=+b.dataset.o;document.querySelectorAll('#oseg button').forEach(x=>x.classList.toggle('on',x===b));render()}
+ if(b.id==='theme'){const r=document.documentElement;const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;r.dataset.theme=dark?'light':'dark'}
+});
+render();
+</script>
+</body>
+</html>
